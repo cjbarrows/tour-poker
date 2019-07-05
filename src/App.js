@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import './App.css';
 
 class App extends Component {
   state = { hand: null };
 
   async componentDidMount() {
+    const { socket } = this.props;
+
+    socket.on('connect', () => {
+      console.log('I am connected');
+    })
+
     // remote:
     // const res = await fetch('/api/player');
     // local:
-    const res = await fetch('/player');
+    // const res = await fetch('/player');
+    const res = await fetch(`${process.env.REACT_APP_API_PREFIX}/player`);
     console.log(res);
     const json = await res.json();
     this.setState({ hand: json })
@@ -24,4 +33,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  socket: state.general.socket,
+});
+
+export default connect(mapStateToProps)(App);
