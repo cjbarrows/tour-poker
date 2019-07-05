@@ -5,7 +5,6 @@ import {
   OUTGOING_MESSAGE_CHANGED,
   MESSAGE_RECEIVED,
   CLIENT_UPDATE_RECEIVED,
-  REFRESH_PLAYER_RECEIVED,
   ABANDON_CHAT,
   MESSAGE_SENT
 } from '../actions';
@@ -68,12 +67,6 @@ function messageReducer(state = INITIAL_STATE, action) {
         })
       });
       break;
-
-    case REFRESH_PLAYER_RECEIVED:
-      return {
-        ...state,
-        hand: [...action.message.hand]
-      };
 
     case CLIENT_UPDATE_RECEIVED:
       reduced = Object.assign({},

@@ -2,20 +2,27 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Card from './Card';
+
 import * as cardActions from './cardActions';
+
+import './PlayerHand.css';
 
 class PlayerHand extends Component {
   render() {
-    const { hand, playerName } = this.props;
+    const { players, loggedIn, name, turn } = this.props;
+
+    const hand = players[name] || [];
+
+    const className = `player-hand ${turn === name ? 'my-turn' : ''}`;
+
+    const showCards = loggedIn === name;
 
     return (
-      <>
-        {hand && hand.map(card => (<p>{card.name}</p>))}
-        <button
-          onClick={() => {
-            this.props.cardActions.dealCard(playerName);
-          }}>Deal a Card</button>
-      </>
+      <div className={className}>
+        <h1>{name}</h1>
+        {hand && hand.map(card => <Card show={showCards} data={card} />)}
+      </div>
     )
   }
 }
@@ -25,8 +32,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  players: state.players,
-  hand: state.messageReducer.hand
+  players: state.playerReducer,
+  turn: state.gameReducer.turn,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerHand);

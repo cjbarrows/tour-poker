@@ -4,10 +4,11 @@ import io from 'socket.io-client';
 // Socket manager
 export default class Socket {
 
-  constructor(onChange, onSocketError, onMessage, onRefreshPlayer, onUpdateClient) {
+  constructor({ onChange, onSocketError, onMessage, onGameState, onRefreshPlayer, onUpdateClient }) {
     this.onChange = onChange;
     this.onSocketError = onSocketError;
     this.onMessage = onMessage;
+    this.onGameState = onGameState;
     this.onRefreshPlayer = onRefreshPlayer;
     this.onUpdateClient = onUpdateClient;
     this.socket = null;
@@ -31,6 +32,7 @@ export default class Socket {
     this.sendIdent();
     this.socket.on(Protocol.IM, this.onMessage);
     this.socket.on(Protocol.REFRESH_PLAYER, this.onRefreshPlayer);
+    this.socket.on(Protocol.GAME_STATE, this.onGameState);
     this.socket.on(Protocol.UPDATE_CLIENT, this.onUpdateClient);
     this.onChange(true);
   };

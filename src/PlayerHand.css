@@ -1,0 +1,19 @@
+div.player-hand {
+  padding-left: 75px;
+  display: flex;
+  flex-direction: row;
+  background-color: lightblue;
+}
+
+div.player-hand:not(:first-child) {
+}
+
+div.player-hand.my-turn {
+  background-color: gold;
+}
+
+div.player-hand h1 {
+  position: absolute;
+  left: 0;
+  z-index: 0;
+}

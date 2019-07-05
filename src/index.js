@@ -43,7 +43,7 @@ console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App loggedIn="Charlie" />
   </Provider>,
   document.getElementById('root')
 );

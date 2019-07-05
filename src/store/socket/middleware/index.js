@@ -7,12 +7,13 @@ import {
 } from "../actions";
 import {
   clientUpdateReceived,
-  refreshPlayerReceived,
   messageReceived,
-  recipientChanged,
   messageSent,
   SEND_MESSAGE
 } from "../../message/actions";
+
+import { refreshPlayerReceived } from '../../player/actions';
+import { gameStateReceived } from '../../game/actions';
 
 const socketMiddleware = store => {
 
@@ -32,10 +33,14 @@ const socketMiddleware = store => {
     store.dispatch(refreshPlayerReceived(message));
   }
 
+  const onGameState = message => {
+    store.dispatch(gameStateReceived(message));
+  }
+
   // The server has updated us with a list of all users currently on the system
   const onUpdateClient = message => {
 
-    const messageState = store.getState().messageState;
+    // const messageState = store.getState().messageState;
 
     // Remove this user from the list
     // const otherUsers = message.list.filter(user => user !== messageState.user);
@@ -66,13 +71,14 @@ const socketMiddleware = store => {
     */
   };
 
-  const socket = new Socket(
-    onConnectionChange,
+  const socket = new Socket({
+    onChange: onConnectionChange,
     onSocketError,
+    onGameState,
     onIncomingMessage,
     onRefreshPlayer,
     onUpdateClient
-  );
+  });
 
   socket.connect(process.env.REACT_APP_SOCKET_SERVER);
 

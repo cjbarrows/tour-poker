@@ -1,0 +1,10 @@
+div.card {
+  width: 20%;
+  flex-grow: 1;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, .5);
+  z-index: 1;
+}
