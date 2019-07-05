@@ -2,8 +2,11 @@
   "name": "tour-poker",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.10.0",
+    "node": "10.16.0"
+  },
   "dependencies": {
-    "http-proxy-middleware": "^0.19.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
