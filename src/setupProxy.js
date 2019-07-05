@@ -1,7 +1,6 @@
 const proxy = require('http-proxy-middleware');
 
 module.exports = function (app) {
-  /*
   // remote:
   app.use(proxy('/api',
     {
@@ -12,5 +11,4 @@ module.exports = function (app) {
       },
     }
   ));
-  */
 }

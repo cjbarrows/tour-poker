@@ -17,6 +17,7 @@ class App extends Component {
     // const res = await fetch('/api/player');
     // local:
     // const res = await fetch('/player');
+    console.log(process.env.REACT_APP_API_PREFIX);
     const res = await fetch(`${process.env.REACT_APP_API_PREFIX}/player`);
     console.log(res);
     const json = await res.json();
