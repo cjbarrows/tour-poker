@@ -11,9 +11,10 @@ import * as serviceWorker from './serviceWorker';
 import todoApp from './reducers'
 
 // remote:
-// const socket = io('https://tour-poker-server.herokuapp.com:3002');
+// const socket = io('https://tour-poker-server.herokuapp.com:24986');
+// const socket = io('localhost:3002');
 // local:
-console.log(process.env.REACT_APP_SOCKET_SERVER);
+// console.log(process.env.REACT_APP_SOCKET_SERVER);
 const socket = io(process.env.REACT_APP_SOCKET_SERVER);
 
 socket.on('connect', function () {
