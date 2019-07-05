@@ -6,7 +6,15 @@ import {
   VisibilityFilters
 } from './actions'
 
+import messageReducer from './store/message/reducer';
+
 const { SHOW_ALL } = VisibilityFilters
+
+function players(state, action) {
+  return {
+    ...state,
+  }
+}
 
 function general(state, action) {
   return {
@@ -49,8 +57,10 @@ function todos(state = [], action) {
 
 const todoApp = combineReducers({
   general,
+  players,
   visibilityFilter,
-  todos
+  todos,
+  messageReducer
 })
 
 export default todoApp;
