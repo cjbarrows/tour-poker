@@ -6,6 +6,7 @@ class App extends Component {
 
   async componentDidMount() {
     const res = await fetch('/player');
+    console.log(res);
     const json = await res.json();
     this.setState({ hand: json })
   }
