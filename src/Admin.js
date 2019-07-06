@@ -5,11 +5,15 @@ import './Admin.css';
 
 class Admin extends Component {
   render() {
-    const { bid, pot, turn, phase, stage } = this.props.gameReducer;
+    const { bid, pot, turn, phase, stage, year } = this.props.gameReducer;
 
     return (
       <div className="admin-page">
         <div className="column">
+          <p>
+            <label>Year</label><br></br>
+            <input type="text" value={year}></input>
+          </p>
           <p>
             <label>Active Stage</label><br></br>
             <input type="text" value={stage}></input>

@@ -2,12 +2,14 @@ html,
 body,
 div#root,
 .App {
-  height: 100%;
   margin: 0
 }
 
-.App {
+html {
   background-color: lightgreen;
+}
+
+.App {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

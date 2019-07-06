@@ -1,6 +1,7 @@
 import { GAME_STATE_RECEIVED } from '../actions';
 
 const INITIAL_STATE = {
+  year: '',
   stage: '',
   phase: '',
   turn: '',
@@ -11,13 +12,10 @@ const INITIAL_STATE = {
 function gameReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case GAME_STATE_RECEIVED:
+      const { type, ...rest } = action;
       return {
         ...state,
-        stage: action.stage,
-        phase: action.phase,
-        turn: action.turn,
-        pot: action.pot,
-        bid: action.bid
+        ...rest,
       };
 
     default:

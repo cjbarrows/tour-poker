@@ -1,5 +1,5 @@
 TODO:
-- save and load game state
+- load game state
 - finish bidding
 - discard/redraw cards
 - calculate winner
@@ -13,3 +13,4 @@ DONE:
 - somehow I ended up with two Rick Zabel's in my hand, one in kom and one in points (!)
 - admin screen for viewing
 - admin screen for saving? (or use Firestore admin?) [yes]
+- save game state
