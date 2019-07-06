@@ -39,8 +39,6 @@ const store = createStore(todoApp, {
   applyMiddleware(...middleware)
 ));
 
-console.log(store.getState());
-
 // <App loggedIn="Charlie" />
 ReactDOM.render(
   <Provider store={store}>

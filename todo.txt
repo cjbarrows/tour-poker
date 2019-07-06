@@ -1,3 +1,5 @@
+- somehow I ended up with two Rick Zabel's in my hand, one in kom and one in points (!)
+- seems like checking localStorage.getItem() in PrivateRoute isn't secure at all
+  - meaning: I can fake being "Katie" and see her cards (unless we restrict reading to only data they have access to)
 - pass the authentication token to the backend
 - don't socket.io connect until logged in
-- seems like checking localStorage.getItem() in PrivateRoute isn't secure at all

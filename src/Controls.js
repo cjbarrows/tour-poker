@@ -11,9 +11,12 @@ class Controls extends Component {
   render() {
     const { bid, loggedIn, playerReducer, pot } = this.props;
 
+    // TODO show the pot graphically
+
     const { stake } = playerReducer[loggedIn];
 
-    const needsToPay = bid !== stake;
+    const needsToPay = bid - stake;
+    const stayInMessage = needsToPay > 0 ? `($${needsToPay} to stay in)` : '';
 
     return (
       <div className="controls">
@@ -21,9 +24,9 @@ class Controls extends Component {
           <button
             onClick={() => {
               this.props.gameActions.bid(loggedIn, 25);
-            }}>Bid $25 (${`${pot}`})</button>
+            }}>Bid $25<br></br>{stayInMessage}</button>
           {
-            !needsToPay &&
+            needsToPay <= 0 &&
             <button
               className="done"
               onClick={() => this.props.gameActions.endTurn()}
