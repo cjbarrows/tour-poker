@@ -8,7 +8,8 @@ module.exports = function (app) {
       target: process.env.REACT_APP_API_URL,
       changeOrigin: true,
       pathRewrite: {
-        '^/api/player': '/player' // remove base path
+        '^/api/player': '/player', // remove base path
+        '^/api/users/authenticate': '/users/authenticate' // remove base path
       },
     }
   ));

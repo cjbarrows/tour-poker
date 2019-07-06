@@ -14,9 +14,7 @@ class Hands extends Component {
     return (
       <div className="hands">
         {players.map(player => (
-          <>
-            <PlayerHand name={player} loggedIn={loggedIn} />
-          </>
+          <PlayerHand key={player} name={player} loggedIn={loggedIn} />
         ))}
       </div>
     )

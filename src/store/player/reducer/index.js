@@ -9,7 +9,11 @@ function playerReducer(state = INITIAL_STATE, action) {
     case REFRESH_PLAYER_RECEIVED:
       return {
         ...state,
-        [action.playerName]: [...action.hand]
+        [action.playerName]: {
+          hand: [...action.hand],
+          money: action.money,
+          stake: action.stake
+        },
       };
 
     default:

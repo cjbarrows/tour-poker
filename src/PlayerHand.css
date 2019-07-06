@@ -17,3 +17,10 @@ div.player-hand h1 {
   left: 0;
   z-index: 0;
 }
+
+div.player-hand p.money {
+  margin: 0;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: left;
+}

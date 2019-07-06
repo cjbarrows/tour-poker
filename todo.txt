@@ -1,0 +1,3 @@
+- pass the authentication token to the backend
+- don't socket.io connect until logged in
+- seems like checking localStorage.getItem() in PrivateRoute isn't secure at all

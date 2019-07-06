@@ -41,9 +41,10 @@ const store = createStore(todoApp, {
 
 console.log(store.getState());
 
+// <App loggedIn="Charlie" />
 ReactDOM.render(
   <Provider store={store}>
-    <App loggedIn="Charlie" />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

@@ -12,7 +12,7 @@ class PlayerHand extends Component {
   render() {
     const { players, loggedIn, name, turn } = this.props;
 
-    const hand = players[name] || [];
+    const { hand, money } = players[name] || [];
 
     const className = `player-hand ${turn === name ? 'my-turn' : ''}`;
 
@@ -20,8 +20,8 @@ class PlayerHand extends Component {
 
     return (
       <div className={className}>
-        <h1>{name}</h1>
-        {hand && hand.map(card => <Card show={showCards} data={card} />)}
+        <h1>{name}<p className="money">${money}</p></h1>
+        {hand && hand.map(card => <Card key={card.name} show={showCards} data={card} />)}
       </div>
     )
   }

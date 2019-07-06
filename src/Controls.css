@@ -7,6 +7,17 @@ div.controls {
   min-height: 45px;
 }
 
-div.controls button {
+div.controls div.buttonHolder {
   width: 25%;
+  display: flex;
+  flex-direction: row;
+}
+
+div.buttonHolder button {
+  flex-grow: 1;
+}
+
+button.done {
+  background-color: darkgreen;
+  color: white;
 }

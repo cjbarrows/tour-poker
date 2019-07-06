@@ -4,6 +4,8 @@ export const gameStateReceived = (message) => {
   return {
     type: GAME_STATE_RECEIVED,
     phase: message.phase,
-    turn: message.turn
+    turn: message.turn,
+    pot: message.pot,
+    bid: message.bid
   }
 }

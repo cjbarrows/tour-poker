@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Hands from './Hands';
-import Controls from './Controls';
+import { PrivateRoute } from './components/PrivateRoute';
+import Login from './Login';
+import GamePage from './GamePage';
 
 import './App.css';
 
 class App extends Component {
-  state = { hand: null };
-
   render() {
-    const { loggedIn, turn } = this.props;
-
     return (
       <div className="App">
-        <Hands loggedIn={loggedIn} />
-        {turn === loggedIn && <Controls />}
+        <Router>
+          <>
+            <PrivateRoute exact path="/" component={GamePage} />
+            <Route path="/login" component={Login} />
+          </>
+        </Router>
       </div>
     );
   }
