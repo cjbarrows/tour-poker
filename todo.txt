@@ -1,5 +1,15 @@
-- somehow I ended up with two Rick Zabel's in my hand, one in kom and one in points (!)
+TODO:
+- save and load game state
+- finish bidding
+- discard/redraw cards
+- calculate winner
+- admin screen to "load stage"
 - seems like checking localStorage.getItem() in PrivateRoute isn't secure at all
   - meaning: I can fake being "Katie" and see her cards (unless we restrict reading to only data they have access to)
 - pass the authentication token to the backend
 - don't socket.io connect until logged in
+
+DONE:
+- somehow I ended up with two Rick Zabel's in my hand, one in kom and one in points (!)
+- admin screen for viewing
+- admin screen for saving? (or use Firestore admin?) [yes]

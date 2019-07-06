@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import Login from './Login';
 import GamePage from './GamePage';
+import Admin from './Admin'
 
 import './App.css';
 
@@ -16,6 +17,7 @@ class App extends Component {
           <>
             <PrivateRoute exact path="/" component={GamePage} />
             <Route path="/login" component={Login} />
+            <Route path="/admin" component={Admin} />
           </>
         </Router>
       </div>

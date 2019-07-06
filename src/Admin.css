@@ -1,0 +1,23 @@
+.admin-page {
+  padding: 5px;
+}
+
+.admin-page .column {
+  background-color: black;
+  width: 80%;
+  margin-left: 10%;
+  padding: 5px;
+}
+
+.admin-page label {
+  color: white;
+}
+
+.admin-page p {
+  margin: 10px;
+  padding: 5px;
+}
+
+.admin-page p.boxed {
+  background-color: gray;
+}
