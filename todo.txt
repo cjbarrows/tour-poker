@@ -1,9 +1,7 @@
 TODO:
-- use stage results as a first priority
-- if there are insufficient stage results, use gc
-- make deck from stage admin button
-- show results of makedeck (ie, # of cards of each suit?)
 - save player state (including hands) and deck state
+  - save "owner" (and "hand position") to cards (including "discard" as owner)
+- add 'deal' phase
 - finish bidding
 - discard/redraw cards
 - calculate winner
@@ -18,3 +16,7 @@ DONE:
 - admin screen for saving? (or use Firestore admin?) [yes]
 - save game state
 - load game state
+- use stage results as a first priority
+- if there are insufficient stage results, use gc
+- make deck from stage admin button
+- show results of makedeck (ie, # of cards of each suit?)

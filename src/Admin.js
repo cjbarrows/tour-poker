@@ -66,6 +66,8 @@ class Admin extends Component {
     const { makeDeck } = this.props;
     const { year, stage } = this.state;
 
+    this.setState({ makeDeckResult: '' })
+
     if (year && stage) {
       const response = await makeDeck(year, stage);
       const responseData = await response.json();
