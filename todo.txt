@@ -1,9 +1,12 @@
 TODO:
-- load game state
+- use stage results as a first priority
+- if there are insufficient stage results, use gc
+- make deck from stage admin button
+- show results of makedeck (ie, # of cards of each suit?)
+- save player state (including hands) and deck state
 - finish bidding
 - discard/redraw cards
 - calculate winner
-- admin screen to "load stage"
 - seems like checking localStorage.getItem() in PrivateRoute isn't secure at all
   - meaning: I can fake being "Katie" and see her cards (unless we restrict reading to only data they have access to)
 - pass the authentication token to the backend
@@ -14,3 +17,4 @@ DONE:
 - admin screen for viewing
 - admin screen for saving? (or use Firestore admin?) [yes]
 - save game state
+- load game state

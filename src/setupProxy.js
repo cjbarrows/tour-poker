@@ -9,7 +9,8 @@ module.exports = function (app) {
       changeOrigin: true,
       pathRewrite: {
         '^/api/player': '/player', // remove base path
-        '^/api/users/authenticate': '/users/authenticate' // remove base path
+        '^/api/users/authenticate': '/users/authenticate', // remove base path
+        '^/api/makedeck': '/makedeck',
       },
     }
   ));

@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { makeDeck } from './adminActions';
 
 import './Admin.css';
 
 class Admin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   render() {
     const { bid, pot, turn, phase, stage, year } = this.props.gameReducer;
+    const { makeDeckResult } = this.state;
 
     return (
       <div className="admin-page">
@@ -35,17 +45,41 @@ class Admin extends Component {
             <input type="text" value={phase}></input>
           </p>
           <p className="boxed">
-            <label>New Stage: </label><br></br>
-            <input type="text"></input><button>Load</button>
+            <label>Make Deck from Results: </label>
+            <input type="text" id="make-deck-year" placeholder="year" onChange={(e) => this.onInput(e, 'year')}></input>
+            <input type="text" id="make-deck-stage" placeholder="stage" onChange={(e) => this.onInput(e, 'stage')}></input>
+            <button onClick={() => this.makeDeck()}>Make</button>
+            {makeDeckResult && (
+              <span>{makeDeckResult}</span>
+            )}
           </p>
         </div>
       </div>
     )
   }
+
+  onInput(e, fieldName) {
+    this.setState({ [fieldName]: e.target.value })
+  }
+
+  async makeDeck() {
+    const { makeDeck } = this.props;
+    const { year, stage } = this.state;
+
+    if (year && stage) {
+      const response = await makeDeck(year, stage);
+      const responseData = await response.json();
+      this.setState({ makeDeckResult: JSON.stringify(responseData) })
+    }
+  }
 }
+
+const mapDispatchToProps = dispatch => ({
+  makeDeck: bindActionCreators(makeDeck, dispatch),
+});
 
 const mapStateToProps = state => ({
   gameReducer: state.gameReducer,
 });
 
-export default connect(mapStateToProps)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);
