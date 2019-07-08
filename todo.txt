@@ -1,7 +1,10 @@
+
 TODO:
 - save player state (including hands) and deck state
   - save "owner" (and "hand position") to cards (including "discard" as owner)
-- add 'deal' phase
+- save player money -- what else? stake?
+- in "deal" phase, show players cards so they can view/click on them
+- allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
 - finish bidding
 - discard/redraw cards
 - calculate winner
@@ -9,6 +12,11 @@ TODO:
   - meaning: I can fake being "Katie" and see her cards (unless we restrict reading to only data they have access to)
 - pass the authentication token to the backend
 - don't socket.io connect until logged in
+
+references / auth code:
+https://github.com/cornflourblue/react-basic-authentication-example/blob/master/src/_services/user.service.js
+https://jasonwatmore.com/post/2018/09/11/react-basic-http-authentication-tutorial-example
+https://itnext.io/building-a-react-based-chat-client-with-redux-816b47cb8c74
 
 DONE:
 - somehow I ended up with two Rick Zabel's in my hand, one in kom and one in points (!)
@@ -20,3 +28,4 @@ DONE:
 - if there are insufficient stage results, use gc
 - make deck from stage admin button
 - show results of makedeck (ie, # of cards of each suit?)
+- add 'deal' phase, one card at a time

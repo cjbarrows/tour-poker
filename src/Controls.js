@@ -6,6 +6,7 @@ import * as cardActions from './cardActions';
 import * as gameActions from './gameActions';
 
 import BidControls from './BidControls';
+import DealControls from './DealControls';
 
 import './Controls.css';
 
@@ -13,11 +14,16 @@ class Controls extends Component {
   render() {
     const { loggedIn, phase } = this.props;
 
-    console.log(phase);
-
-    return phase === 'deal'
-      ? (<button onClick={() => this.props.gameActions.endTurn()}>End Turn</button>)
-      : <BidControls loggedIn={loggedIn} />
+    switch (phase) {
+      case 'shuffle':
+        return (<button onClick={() => this.props.gameActions.endTurn()}>End Turn</button>);
+      case 'deal':
+        return <DealControls />
+      case 'bid':
+        return <BidControls loggedIn={loggedIn} />
+      default:
+        return <p>Some other phase</p>
+    }
   }
 }
 
