@@ -14,7 +14,7 @@ class Admin extends Component {
   }
 
   render() {
-    const { bid, pot, turn, phase, stage, year } = this.props.gameReducer;
+    const { bid, pot, turn, phase, subPhase, stage, year } = this.props.gameReducer;
     const { makeDeckResult } = this.state;
 
     return (
@@ -43,6 +43,10 @@ class Admin extends Component {
           <p>
             <label>Phase</label><br></br>
             <input type="text" value={phase}></input>
+          </p>
+          <p>
+            <label>Subphase</label><br></br>
+            <input type="text" value={subPhase}></input>
           </p>
           <p className="boxed">
             <label>Make Deck from Results: </label>

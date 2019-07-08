@@ -13,7 +13,7 @@ class DealControls extends Component {
       <div className="controls">
         <div className="buttonHolder">
           <button
-            onClick={() => deal()}>Deal</button>
+            onClick={() => deal(true)}>Deal</button>
         </div>
       </div>
     )
