@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import PlayerHand from './PlayerHand';
+import PlayerHand from "./PlayerHand";
 
-import './Hands.css';
+import "./Hands.css";
 
-const players = ['Charlie', 'Ethan', 'Jorie', 'Katie'];
+const players = ["charlie", "ethan", "jorie", "katie"];
 
 class Hands extends Component {
   render() {
@@ -17,11 +17,10 @@ class Hands extends Component {
           <PlayerHand key={player} name={player} loggedIn={loggedIn} />
         ))}
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(Hands);

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import * as cardActions from './cardActions';
-import * as gameActions from './gameActions';
+import * as cardActions from "./cardActions";
+import * as gameActions from "./gameActions";
 
 class BidControls extends Component {
   render() {
@@ -15,7 +15,8 @@ class BidControls extends Component {
     const { stake } = playerReducer[loggedIn];
 
     const needsToPay = bid - stake;
-    const stayInMessage = needsToPay > 0 ? `($${needsToPay} to stay in)` : '';
+    const stayInMessage =
+      needsToPay > 0 ? `($${needsToPay} to stay in)` : `Current Bid: $${bid}`;
 
     return (
       <div className="controls">
@@ -23,42 +24,38 @@ class BidControls extends Component {
           <button
             onClick={() => {
               this.props.gameActions.bid(loggedIn, 25);
-            }}>Bid $25<br></br>{stayInMessage}</button>
-          {
-            needsToPay <= 0 &&
+            }}
+          >
+            Bid $25
+            <br />
+            {stayInMessage}
+          </button>
+          {needsToPay <= 0 && (
             <button
               className="done"
               onClick={() => this.props.gameActions.endTurn()}
-            >Done
+            >
+              Done
+            </button>
+          )}
+        </div>
+        <div className="buttonHolder">
+          <button
+            onClick={() => {
+              this.props.gameActions.fold(loggedIn);
+            }}
+          >
+            Fold
           </button>
-          }
-        </div>
-        <div className="buttonHolder">
-          <button
-            onClick={() => {
-              this.props.cardActions.dealCard('Charlie');
-            }}>Raise</button>
-        </div>
-        <div className="buttonHolder">
-          <button
-            onClick={() => {
-              this.props.cardActions.dealCard('Charlie');
-            }}>Call</button>
-        </div>
-        <div className="buttonHolder">
-          <button
-            onClick={() => {
-              this.props.cardActions.dealCard('Charlie');
-            }}>Fold</button>
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   cardActions: bindActionCreators(cardActions, dispatch),
-  gameActions: bindActionCreators(gameActions, dispatch),
+  gameActions: bindActionCreators(gameActions, dispatch)
 });
 
 const mapStateToProps = state => ({
@@ -67,4 +64,7 @@ const mapStateToProps = state => ({
   playerReducer: state.playerReducer
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BidControls);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BidControls);

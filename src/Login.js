@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { userService } from './services/userService';
+import { userService } from "./services/userService";
 
-import './Login.css';
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Login extends Component {
     this.state = {
       username: undefined,
       password: undefined,
-      errorMessage: '',
+      errorMessage: ""
     };
   }
 
@@ -20,16 +20,58 @@ class Login extends Component {
 
     return (
       <div className="login">
-        <div><input type="radio" id="p1" name="player" value="Charlie" onChange={(e) => this.handleOptionChange(e)}></input><label htmlFor="p1">Charlie</label></div>
-        <div><input type="radio" id="p2" name="player" value="Ethan" onChange={(e) => this.handleOptionChange(e)}></input><label htmlFor="p2">Ethan</label></div>
-        <div><input type="radio" id="p3" name="player" value="Jorie" onChange={(e) => this.handleOptionChange(e)}></input><label htmlFor="p3">Jorie</label></div>
-        <div><input type="radio" id="p4" name="player" value="Katie" onChange={(e) => this.handleOptionChange(e)}></input><label htmlFor="p4">Katie</label></div>
-        <input type="text" onChange={(e) => this.handlePasswordChange(e)} placeholder="password"></input>
-        <button className="login" onClick={(e) => this.attemptLogin(e)}>Login</button>
+        <div>
+          <input
+            type="radio"
+            id="p1"
+            name="player"
+            value="charlie"
+            onChange={e => this.handleOptionChange(e)}
+          />
+          <label htmlFor="p1">Charlie</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="p2"
+            name="player"
+            value="ethan"
+            onChange={e => this.handleOptionChange(e)}
+          />
+          <label htmlFor="p2">Ethan</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="p3"
+            name="player"
+            value="jorie"
+            onChange={e => this.handleOptionChange(e)}
+          />
+          <label htmlFor="p3">Jorie</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="p4"
+            name="player"
+            value="katie"
+            onChange={e => this.handleOptionChange(e)}
+          />
+          <label htmlFor="p4">Katie</label>
+        </div>
+        <input
+          type="text"
+          onChange={e => this.handlePasswordChange(e)}
+          placeholder="password"
+        />
+        <button className="login" onClick={e => this.attemptLogin(e)}>
+          Login
+        </button>
         <div className="errorContainer">
           <p className="error">{errorMessage}</p>
         </div>
-      </div >
+      </div>
     );
   }
 
@@ -38,7 +80,7 @@ class Login extends Component {
 
     const result = await userService.login(username, password);
     if (result.ok) {
-      this.props.history.push('/');
+      this.props.history.push("/");
     } else {
       this.setState({ errorMessage: result.errorMessage });
     }

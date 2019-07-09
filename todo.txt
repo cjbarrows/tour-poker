@@ -1,3 +1,11 @@
+[ ] use the same "dealer" for the whole stage/game
+	- phases advance after reaching the dealer
+[ ] 5 card draw: phases: [shuffle; deal(D, D, D, D, D); bid; draw; bid; showdown]
+[ ] 7 card stud: phases: [shuffle, deal(D, D, U), bid, deal(U), bid, deal(U), bid, deal(U), bid, deal(D), bid, showdown]
+[ ] texas: phases: [shuffle, deal(DD), bid, deal(S, S, S), bid, deal(S), bid, deal(S), bid, showdown]
+[ ] endTurn:
+	deal 1, [DDU] [phase, dealPattern]
+
 
 TODO:
 - where are the "dealer" and first "turn" players set?
