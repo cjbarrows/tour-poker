@@ -1,7 +1,6 @@
 
 TODO:
-- save player state (including hands) and deck state
-  - save "owner" (and "hand position") to cards (including "discard" as owner)
+- where are the "dealer" and first "turn" players set?
 - save player money -- what else? stake?
 - in "deal" phase, show players cards so they can view/click on them
 - allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
@@ -29,3 +28,6 @@ DONE:
 - make deck from stage admin button
 - show results of makedeck (ie, # of cards of each suit?)
 - add 'deal' phase, one card at a time
+- save player state (including hands) and deck state [saved with deck]
+  - save "owner" (and "hand position") to cards (including "discard" as owner)
+- load player money & stake [by year]

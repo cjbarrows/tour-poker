@@ -16,7 +16,7 @@ class Controls extends Component {
 
     switch (phase) {
       case 'shuffle':
-        return (<button onClick={() => this.props.gameActions.endTurn()}>End Turn</button>);
+        return (<button onClick={() => this.props.gameActions.endTurn()}>Shuffle Deck</button>);
       case 'deal':
         return <DealControls />
       case 'bid':

@@ -16,12 +16,12 @@ class PlayerHand extends Component {
 
     const className = `player-hand ${turn === name ? 'my-turn' : ''}`;
 
-    const showCards = loggedIn === name;
+    const isOwnHand = loggedIn === name;
 
     return (
       <div className={className}>
         <h1>{name}<p className="money">${money}</p></h1>
-        {hand && hand.map(card => <Card key={card.name} show={showCards} data={card} />)}
+        {hand && hand.map(card => <Card key={card.name} show={isOwnHand || card.faceDown === false} data={card} />)}
       </div>
     )
   }

@@ -25,7 +25,7 @@ class Card extends Component {
             <p>{name}</p>
             <p>{getDescription(rank, suit, asterisk)}</p>
           </>
-        ) : <p>?</p>}
+        ) : <p>Back of Card</p>}
       </div>
     )
   }
