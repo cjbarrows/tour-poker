@@ -8,8 +8,10 @@
 
 
 TODO:
+- "restart game" admin function?
+- or even a "start game" function to populate bid, gamePhases, phase, pot, stage, turn, year, dealer, etc!
 - where are the "dealer" and first "turn" players set?
-- save player money -- what else? stake?
+- or is that my "admin" page?
 - in "deal" phase, show players cards so they can view/click on them
 - allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
 - finish bidding
@@ -39,3 +41,4 @@ DONE:
 - save player state (including hands) and deck state [saved with deck]
   - save "owner" (and "hand position") to cards (including "discard" as owner)
 - load player money & stake [by year]
+- save player money -- what else? stake?

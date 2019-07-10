@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import Hands from './Hands';
-import Controls from './Controls';
+import Hands from "./Hands";
+import Controls from "./controls/Controls";
 
 class GamePage extends Component {
   render() {
     const { turn } = this.props;
 
-    const { user: { username: loggedIn } } = JSON.parse(localStorage.getItem('user'));
+    const {
+      user: { username: loggedIn }
+    } = JSON.parse(localStorage.getItem("user"));
 
     return (
       <>
@@ -20,7 +22,7 @@ class GamePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  turn: state.gameReducer.turn,
+  turn: state.gameReducer.turn
 });
 
 export default connect(mapStateToProps)(GamePage);

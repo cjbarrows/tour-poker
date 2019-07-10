@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import * as cardActions from "./cardActions";
-import * as gameActions from "./gameActions";
+import * as cardActions from "../cardActions";
+import * as gameActions from "../gameActions";
 
 class BidControls extends Component {
   render() {
@@ -23,7 +23,10 @@ class BidControls extends Component {
         <div className="buttonHolder">
           <button
             onClick={() => {
-              this.props.gameActions.bid(loggedIn, 25);
+              this.props.gameActions.doPhaseAction({
+                playerName: loggedIn,
+                amount: 25
+              });
             }}
           >
             Bid $25

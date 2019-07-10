@@ -1,15 +1,15 @@
-import { sendMessage } from './store/message/actions';
+import { sendMessage } from "./store/message/actions";
 
-const bid = (playerName, amount) => (dispatch) => {
-  dispatch(sendMessage('bid', { playerName, amount }));
-}
+const bid = (playerName, amount) => dispatch => {
+  dispatch(sendMessage("bid", { playerName, amount }));
+};
 
-const deal = () => (dispatch) => {
-  dispatch(sendMessage('deal'));
-}
+const endTurn = () => dispatch => {
+  dispatch(sendMessage("endTurn"));
+};
 
-const endTurn = () => (dispatch) => {
-  dispatch(sendMessage('endTurn'));
-}
+const doPhaseAction = options => dispatch => {
+  dispatch(sendMessage("doPhaseAction", options));
+};
 
-export { bid, deal, endTurn };
+export { bid, doPhaseAction, endTurn };
