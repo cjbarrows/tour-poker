@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import Hands from "./Hands";
-import Controls from "./controls/Controls";
+import Hands from './Hands';
+import Controls from './controls/Controls';
 
 class GamePage extends Component {
   render() {
@@ -10,14 +10,18 @@ class GamePage extends Component {
 
     const {
       user: { username: loggedIn }
-    } = JSON.parse(localStorage.getItem("user"));
+    } = JSON.parse(localStorage.getItem('user'));
 
     return (
       <>
-        <Hands loggedIn={loggedIn} />
+        <Hands loggedIn={loggedIn} selectorFunction={this.setSelectedCards} />
         {turn === loggedIn && <Controls loggedIn={loggedIn} />}
       </>
     );
+  }
+
+  setSelectedCards(cards) {
+    console.log(cards);
   }
 }
 

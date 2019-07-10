@@ -1,30 +1,33 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as cardActions from "../cardActions";
-import * as gameActions from "../gameActions";
+import * as cardActions from '../cardActions';
+import * as gameActions from '../gameActions';
 
-import BidControls from "./BidControls";
-import DealControls from "./DealControls";
+import BidControls from './BidControls';
+import DealControls from './DealControls';
+import DrawControls from './DrawControls';
 
-import "./Controls.css";
+import './Controls.css';
 
 class Controls extends Component {
   render() {
     const { loggedIn, phase } = this.props;
 
     switch (phase) {
-      case "shuffle":
+      case 'shuffle':
         return (
           <button onClick={() => this.props.gameActions.doPhaseAction()}>
             Shuffle Deck
           </button>
         );
-      case "deal-down":
+      case 'deal-down':
         return <DealControls />;
-      case "bid":
+      case 'bid':
         return <BidControls loggedIn={loggedIn} />;
+      case 'draw':
+        return <DrawControls />;
       default:
         return <p>Some other phase</p>;
     }

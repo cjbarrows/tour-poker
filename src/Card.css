@@ -5,7 +5,12 @@ div.card {
   padding: 5px;
   border-radius: 15px;
   margin: 10px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, .5);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
   z-index: 1;
   text-align: center;
+  user-select: none;
+}
+
+div.card.selected {
+  background-color: red;
 }

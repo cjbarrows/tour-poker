@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import Card from './Card';
+import Card from "./Card";
 
-import * as cardActions from './cardActions';
+import * as cardActions from "./cardActions";
 
-import './PlayerHand.css';
+import "./PlayerHand.css";
 
 class PlayerHand extends Component {
   render() {
@@ -14,26 +14,40 @@ class PlayerHand extends Component {
 
     const { hand, money } = players[name] || [];
 
-    const className = `player-hand ${turn === name ? 'my-turn' : ''}`;
+    const className = `player-hand ${turn === name ? "my-turn" : ""}`;
 
     const isOwnHand = loggedIn === name;
 
     return (
       <div className={className}>
-        <h1>{name}<p className="money">${money}</p></h1>
-        {hand && hand.map(card => <Card key={card.name} show={isOwnHand || card.faceDown === false} data={card} />)}
+        <h1>
+          {name}
+          <p className="money">${money}</p>
+        </h1>
+        {hand &&
+          hand.map(card => (
+            <Card
+              key={card.name}
+              show={isOwnHand || card.faceDown === false}
+              isOwned={isOwnHand}
+              data={card}
+            />
+          ))}
       </div>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  cardActions: bindActionCreators(cardActions, dispatch),
+  cardActions: bindActionCreators(cardActions, dispatch)
 });
 
 const mapStateToProps = state => ({
   players: state.playerReducer,
-  turn: state.gameReducer.turn,
+  turn: state.gameReducer.turn
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerHand);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayerHand);
