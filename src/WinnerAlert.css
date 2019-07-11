@@ -1,0 +1,14 @@
+div.winner-alert {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  background-color: rgba(1, 1, 1, 0.5);
+  z-index: 1;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

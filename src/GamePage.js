@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 import Hands from './Hands';
 import Controls from './controls/Controls';
+import WinnerAlert from './WinnerAlert';
 
 class GamePage extends Component {
   render() {
-    const { turn } = this.props;
+    const { turn, gameWinner } = this.props;
 
     const {
       user: { username: loggedIn }
@@ -16,6 +17,9 @@ class GamePage extends Component {
       <>
         <Hands loggedIn={loggedIn} selectorFunction={this.setSelectedCards} />
         {turn === loggedIn && <Controls loggedIn={loggedIn} />}
+        {gameWinner && Object.entries(gameWinner).length > 0 ? (
+          <WinnerAlert winner={gameWinner.name} hand={gameWinner.hand} />
+        ) : null}
       </>
     );
   }
@@ -26,7 +30,8 @@ class GamePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  turn: state.gameReducer.turn
+  turn: state.gameReducer.turn,
+  gameWinner: state.gameReducer.gameWinner
 });
 
 export default connect(mapStateToProps)(GamePage);

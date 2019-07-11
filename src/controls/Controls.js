@@ -28,6 +28,8 @@ class Controls extends Component {
         return <BidControls loggedIn={loggedIn} />;
       case 'draw':
         return <DrawControls />;
+      case 'showdown':
+        return <></>;
       default:
         return <p>Some other phase</p>;
     }
