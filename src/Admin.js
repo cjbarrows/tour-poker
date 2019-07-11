@@ -33,6 +33,14 @@ const saveGameSettings = settings => dispatch => {
   dispatch(sendMessage('saveGameSettings', settings));
 };
 
+const makeGame = (year, stage) => dispatch => {
+  dispatch(sendMessage('makeGame', { year, stage }));
+};
+
+const switchToGame = (year, stage) => dispatch => {
+  dispatch(sendMessage('switchToGame', { year, stage }));
+};
+
 class Admin extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +50,17 @@ class Admin extends Component {
 
   render() {
     const {
-      gameReducer: { bid, dealer, gamePhases, pot, turn, phase, stage, year },
+      gameReducer: {
+        bid,
+        dealer,
+        gamePhases,
+        pot,
+        turn,
+        phase,
+        stage,
+        year,
+        gameWinner
+      },
       playerReducer
     } = this.props;
 
@@ -122,6 +140,18 @@ class Admin extends Component {
             />
           </div>
           <div>
+            <label>Winner</label>
+            <br />
+            <input
+              type="text"
+              value={
+                gameWinner && Object.entries(gameWinner).length > 0
+                  ? `${gameWinner.name} (${gameWinner.hand})`
+                  : ''
+              }
+            />
+          </div>
+          <div>
             <label>Game Phases</label>
             <br />
             <textarea
@@ -151,6 +181,8 @@ class Admin extends Component {
               onChange={e => this.onInput(e, 'deck_stage')}
             />
             <button onClick={() => this.makeDeck()}>Make Deck</button>
+            <button onClick={() => this.makeGame()}>Make Game</button>
+            <button onClick={() => this.switchToGame()}>Switch to Game</button>
             <div className="output">
               {makeDeckResult && <span>{makeDeckResult}</span>}
             </div>
@@ -177,6 +209,20 @@ class Admin extends Component {
     }
   }
 
+  makeGame() {
+    const { makeGame } = this.props;
+    const { deck_year, deck_stage } = this.state;
+
+    makeGame(deck_year, deck_stage);
+  }
+
+  switchToGame() {
+    const { switchToGame } = this.props;
+    const { deck_year, deck_stage } = this.state;
+
+    switchToGame(deck_year, deck_stage);
+  }
+
   onClickSaveGameSettings() {
     const { gameReducer, saveGameSettings } = this.props;
     const { deck_year, deck_stage, ...gameSettings } = this.state;
@@ -187,7 +233,9 @@ class Admin extends Component {
 
 const mapDispatchToProps = dispatch => ({
   makeDeck: bindActionCreators(makeDeck, dispatch),
-  saveGameSettings: bindActionCreators(saveGameSettings, dispatch)
+  saveGameSettings: bindActionCreators(saveGameSettings, dispatch),
+  makeGame: bindActionCreators(makeGame, dispatch),
+  switchToGame: bindActionCreators(switchToGame, dispatch)
 });
 
 const mapStateToProps = state => ({

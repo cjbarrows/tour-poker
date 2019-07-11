@@ -8,17 +8,10 @@
 
 
 TODO:
-- way to easily set active year/stage (ie, game)
+- test folding
 - poker hand rankings overlay/cheatsheet
-- "restart game" admin function?
-- or even a "start game" function to populate bid, gamePhases, phase, pot, stage, turn, year, dealer, etc!
-- where are the "dealer" and first "turn" players set?
-- or is that my "admin" page?
 - in "deal" phase, show players cards so they can view/click on them
 - allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
-- finish bidding
-- discard/redraw cards
-- calculate winner
 - seems like checking localStorage.getItem() in PrivateRoute isn't secure at all
   - meaning: I can fake being "Katie" and see her cards (unless we restrict reading to only data they have access to)
 - pass the authentication token to the backend
@@ -45,3 +38,11 @@ DONE:
 - load player money & stake [by year]
 - save player money -- what else? stake?
 - reveal name of poker hand
+- way to easily set active year/stage (ie, game)
+- "restart game" admin function?
+- or even a "start game" function to populate bid, gamePhases, phase, pot, stage, turn, year, dealer, etc!
+- where are the "dealer" and first "turn" players set? [admin page]
+- or is that my "admin" page?
+- discard/redraw cards
+- finish bidding
+- calculate winner
