@@ -61,7 +61,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.year || year}
+              value={this.state.year !== undefined ? this.state.year : year}
               onChange={e => this.onInput(e, 'year')}
             />
           </div>
@@ -70,7 +70,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.stage || stage}
+              value={this.state.stage !== undefined ? this.state.stage : stage}
               onChange={e => this.onInput(e, 'stage')}
             />
           </div>
@@ -79,7 +79,9 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.dealer || dealer}
+              value={
+                this.state.dealer !== undefined ? this.state.dealer : dealer
+              }
               onChange={e => this.onInput(e, 'dealer')}
             />
           </div>
@@ -88,7 +90,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.turn || turn}
+              value={this.state.turn !== undefined ? this.state.turn : turn}
               onChange={e => this.onInput(e, 'turn')}
             />
           </div>
@@ -97,7 +99,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.pot || pot}
+              value={this.state.pot !== undefined ? this.state.pot : pot}
               onChange={e => this.onInput(e, 'pot')}
             />
           </div>
@@ -106,7 +108,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.bid || bid}
+              value={this.state.bid !== undefined ? this.state.bid : bid}
               onChange={e => this.onInput(e, 'bid')}
             />
           </div>
@@ -115,7 +117,7 @@ class Admin extends Component {
             <br />
             <input
               type="text"
-              value={this.state.phase || phase}
+              value={this.state.phase !== undefined ? this.state.phase : phase}
               onChange={e => this.onInput(e, 'phase')}
             />
           </div>
@@ -123,7 +125,11 @@ class Admin extends Component {
             <label>Game Phases</label>
             <br />
             <textarea
-              value={this.state.gamePhases || gamePhases}
+              value={
+                this.state.gamePhases !== undefined
+                  ? this.state.gamePhases
+                  : gamePhases
+              }
               onChange={e => this.onInput(e, 'gamePhases')}
             />
           </div>
