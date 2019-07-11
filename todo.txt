@@ -8,6 +8,7 @@
 
 
 TODO:
+- poker hand rankings overlay/cheatsheet
 - "restart game" admin function?
 - or even a "start game" function to populate bid, gamePhases, phase, pot, stage, turn, year, dealer, etc!
 - where are the "dealer" and first "turn" players set?
