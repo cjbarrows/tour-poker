@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import PlayerHand from "./PlayerHand";
+import PlayerHand from './PlayerHand';
 
-import "./Hands.css";
+import './Hands.css';
 
-const players = ["charlie", "ethan", "jorie", "katie"];
+import playerNames from './playerNames';
 
 class Hands extends Component {
   render() {
@@ -13,7 +13,7 @@ class Hands extends Component {
 
     return (
       <div className="hands">
-        {players.map(player => (
+        {playerNames.map(player => (
           <PlayerHand key={player} name={player} loggedIn={loggedIn} />
         ))}
       </div>

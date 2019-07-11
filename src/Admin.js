@@ -1,10 +1,37 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { makeDeck } from "./adminActions";
+import { sendMessage } from './store/message/actions';
+import { makeDeck } from './adminActions';
 
-import "./Admin.css";
+import playerNames from './playerNames';
+
+import './Admin.css';
+
+const makePlayerTableRow = (players, column) => {
+  return (
+    <tr>
+      <td>{column}:</td>
+      {players.map(player => (
+        <td key={player.name}>{player[column]}</td>
+      ))}
+    </tr>
+  );
+};
+const makePlayerTable = players => (
+  <table className="players">
+    <tbody>
+      {makePlayerTableRow(players, 'name')}
+      {makePlayerTableRow(players, 'money')}
+      {makePlayerTableRow(players, 'stake')}
+    </tbody>
+  </table>
+);
+
+const saveGameSettings = settings => dispatch => {
+  dispatch(sendMessage('saveGameSettings', settings));
+};
 
 class Admin extends Component {
   constructor(props) {
@@ -15,71 +42,113 @@ class Admin extends Component {
 
   render() {
     const {
-      bid,
-      dealer,
-      pot,
-      turn,
-      phase,
-      stage,
-      year
-    } = this.props.gameReducer;
+      gameReducer: { bid, dealer, gamePhases, pot, turn, phase, stage, year },
+      playerReducer
+    } = this.props;
+
+    const players = playerReducer
+      ? playerNames.map(name => ({ ...playerReducer[name], name }))
+      : [];
+
     const { makeDeckResult } = this.state;
 
     return (
       <div className="admin-page">
         <div className="column">
-          <p>
+          {makePlayerTable(players)}
+          <div>
             <label>Year</label>
             <br />
-            <input type="text" value={year} />
-          </p>
-          <p>
-            <label>Active Stage</label>
+            <input
+              type="text"
+              value={this.state.year || year}
+              onChange={e => this.onInput(e, 'year')}
+            />
+          </div>
+          <div>
+            <label>Stage</label>
             <br />
-            <input type="text" value={stage} />
-          </p>
-          <p>
+            <input
+              type="text"
+              value={this.state.stage || stage}
+              onChange={e => this.onInput(e, 'stage')}
+            />
+          </div>
+          <div>
             <label>Dealer</label>
             <br />
-            <input type="text" value={dealer} />
-          </p>
-          <p>
+            <input
+              type="text"
+              value={this.state.dealer || dealer}
+              onChange={e => this.onInput(e, 'dealer')}
+            />
+          </div>
+          <div>
             <label>Current Player</label>
             <br />
-            <input type="text" value={turn} />
-          </p>
-          <p>
+            <input
+              type="text"
+              value={this.state.turn || turn}
+              onChange={e => this.onInput(e, 'turn')}
+            />
+          </div>
+          <div>
             <label>Pot</label>
             <br />
-            <input type="text" value={pot} />
-          </p>
-          <p>
+            <input
+              type="text"
+              value={this.state.pot || pot}
+              onChange={e => this.onInput(e, 'pot')}
+            />
+          </div>
+          <div>
             <label>Bid</label>
             <br />
-            <input type="text" value={bid} />
-          </p>
-          <p>
+            <input
+              type="text"
+              value={this.state.bid || bid}
+              onChange={e => this.onInput(e, 'bid')}
+            />
+          </div>
+          <div>
             <label>Phase</label>
             <br />
-            <input type="text" value={phase} />
-          </p>
-          <p className="boxed">
-            <label>Make Deck from Results: </label>
+            <input
+              type="text"
+              value={this.state.phase || phase}
+              onChange={e => this.onInput(e, 'phase')}
+            />
+          </div>
+          <div>
+            <label>Game Phases</label>
+            <br />
+            <textarea
+              value={this.state.gamePhases || gamePhases}
+              onChange={e => this.onInput(e, 'gamePhases')}
+            />
+          </div>
+          <button onClick={() => this.onClickSaveGameSettings()}>
+            Save Game Settings
+          </button>
+          <div className="boxed">
+            <label>Game Control </label>
             <input
               type="text"
               id="make-deck-year"
               placeholder="year"
-              onChange={e => this.onInput(e, "year")}
+              onChange={e => this.onInput(e, 'deck_year')}
             />
             <input
               type="text"
               id="make-deck-stage"
               placeholder="stage"
-              onChange={e => this.onInput(e, "stage")}
+              onChange={e => this.onInput(e, 'deck_stage')}
             />
-            <button onClick={() => this.makeDeck()}>Make</button>
-            {makeDeckResult && <span>{makeDeckResult}</span>}
-          </p>
+            <button onClick={() => this.makeDeck()}>Make Deck</button>
+            <div className="output">
+              {makeDeckResult && <span>{makeDeckResult}</span>}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -91,24 +160,33 @@ class Admin extends Component {
 
   async makeDeck() {
     const { makeDeck } = this.props;
-    const { year, stage } = this.state;
+    const { deck_year, deck_stage } = this.state;
 
-    this.setState({ makeDeckResult: "" });
+    this.setState({ makeDeckResult: '' });
 
-    if (year && stage) {
-      const response = await makeDeck(year, stage);
+    if (deck_year && deck_stage) {
+      const response = await makeDeck(deck_year, deck_stage);
       const responseData = await response.json();
       this.setState({ makeDeckResult: JSON.stringify(responseData) });
     }
   }
+
+  onClickSaveGameSettings() {
+    const { gameReducer, saveGameSettings } = this.props;
+    const { deck_year, deck_stage, ...gameSettings } = this.state;
+
+    saveGameSettings({ ...gameReducer, ...gameSettings });
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
-  makeDeck: bindActionCreators(makeDeck, dispatch)
+  makeDeck: bindActionCreators(makeDeck, dispatch),
+  saveGameSettings: bindActionCreators(saveGameSettings, dispatch)
 });
 
 const mapStateToProps = state => ({
-  gameReducer: state.gameReducer
+  gameReducer: state.gameReducer,
+  playerReducer: state.playerReducer
 });
 
 export default connect(

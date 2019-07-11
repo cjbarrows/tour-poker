@@ -8,6 +8,7 @@
 
 
 TODO:
+- way to easily set active year/stage (ie, game)
 - poker hand rankings overlay/cheatsheet
 - "restart game" admin function?
 - or even a "start game" function to populate bid, gamePhases, phase, pot, stage, turn, year, dealer, etc!

@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   turn: '',
   pot: 0,
   bid: 0,
+  dealer: '',
+  gamePhases: ''
 };
 
 function gameReducer(state = INITIAL_STATE, action) {
@@ -15,15 +17,14 @@ function gameReducer(state = INITIAL_STATE, action) {
       const { type, ...rest } = action;
       return {
         ...state,
-        ...rest,
+        ...rest
       };
 
     default:
       return {
-        ...state,
-      }
+        ...state
+      };
   }
 }
 
 export default gameReducer;
-

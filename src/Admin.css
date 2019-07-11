@@ -13,11 +13,36 @@
   color: white;
 }
 
-.admin-page p {
+.admin-page div {
   margin: 10px;
+  padding: 0;
+}
+
+.admin-page div.boxed {
+  background-color: gray;
+}
+
+.admin-page textarea {
+  width: 100%;
+}
+
+.admin-page table.players {
+  margin: 20px 20px 0 0;
+  float: right;
+  color: white;
+  border-collapse: collapse;
+}
+
+.admin-page table.players,
+table.players td {
+  border: 1px solid white;
+}
+
+.admin-page table.players td {
   padding: 5px;
 }
 
-.admin-page p.boxed {
-  background-color: gray;
+.admin-page button {
+  margin: 10px;
+  padding: 0;
 }
