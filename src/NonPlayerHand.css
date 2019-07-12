@@ -1,0 +1,21 @@
+div.nonplayer-hand-container {
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+div.nonplayer-hand-container .player-hand {
+  position: absolute;
+  white-space: nowrap;
+}
+
+div.nonplayer-hand-container .player-hand .card-holder {
+  display: inline-block;
+  width: 5%;
+}
+
+div.nonplayer-hand-container .player-hand .card-holder .card {
+}
+
+div.nonplayer-hand-container h1 {
+  position: absolute;
+}

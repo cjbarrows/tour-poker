@@ -3,10 +3,24 @@ import { connect } from 'react-redux';
 import { withContentRect } from 'react-measure';
 
 import PlayerHand from './PlayerHand';
+import NonPlayerHand from './NonPlayerHand';
 import Controls from './controls/Controls';
 import WinnerAlert from './WinnerAlert';
+import playerNames from './playerNames';
 
 import './GamePage.css';
+
+const getPlayerNotThis = (players, loggedIn, index) => {
+  let n = 0;
+  for (let i = 0; i < playerNames.length; i++) {
+    if (playerNames[i] !== loggedIn) {
+      if (n === index) {
+        return players[playerNames[i]];
+      }
+      n++;
+    }
+  }
+};
 
 const calculateCardSize = (width, height) => {
   const width1 = Math.floor(width / 7);
@@ -14,14 +28,6 @@ const calculateCardSize = (width, height) => {
 
   const height2 = Math.floor(height / 3);
   const width2 = Math.floor(height2 / 1.5);
-
-  console.log(`${width} ${height}`);
-
-  if (width2 > width1) {
-    console.log('using width1');
-  } else {
-    console.log('using width2');
-  }
 
   return width2 > width1
     ? { width: width1, height: height1 }
@@ -41,10 +47,22 @@ const GamePage = withContentRect('bounds')(props => {
   );
 
   const thisPlayer = players[loggedIn];
+  const leftPlayer = getPlayerNotThis(players, loggedIn, 0);
+  const topPlayer = getPlayerNotThis(players, loggedIn, 1);
+  const rightPlayer = getPlayerNotThis(players, loggedIn, 2);
+
+  console.log(leftPlayer);
 
   return (
     <div ref={measureRef} className="game-page">
       <PlayerHand cardSize={cardSize} player={thisPlayer} />
+      <NonPlayerHand position="left" cardSize={cardSize} player={leftPlayer} />
+      <NonPlayerHand position="top" cardSize={cardSize} player={topPlayer} />
+      <NonPlayerHand
+        position="right"
+        cardSize={cardSize}
+        player={rightPlayer}
+      />
       {turn === loggedIn && <Controls loggedIn={loggedIn} />}
       {gameWinner && Object.entries(gameWinner).length > 0 ? (
         <WinnerAlert winner={gameWinner.name} hand={gameWinner.hand} />

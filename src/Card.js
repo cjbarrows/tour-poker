@@ -11,10 +11,10 @@ import KOMJersey from './images/kom_jersey.png';
 import FrenchFlag from './images/french_flag.png';
 
 const ranks = [
-  'Ace',
-  'King',
-  'Queen',
-  'Jack',
+  'A',
+  'K',
+  'Q',
+  'J',
   '10',
   '9',
   '8',
@@ -25,16 +25,6 @@ const ranks = [
   '3',
   '2'
 ];
-const suits = {
-  gc: 'GC',
-  points: 'Points',
-  kom: 'KOM',
-  stage: 'Stage'
-};
-
-const getDescription = (rank, suit, asterisk) => {
-  return `${ranks[rank]} of ${suits[suit]}${asterisk ? '*' : ''}`;
-};
 
 class Card extends Component {
   toggleSelected() {
@@ -64,7 +54,7 @@ class Card extends Component {
 
     return (
       <span style={{ fontSize }} className="rank">
-        {rank}
+        {ranks[rank]}
       </span>
     );
   }
@@ -132,18 +122,18 @@ class Card extends Component {
 
     return (
       <div
-        className={`card${selected ? ' selected' : ''}`}
+        className={`card${selected ? ' selected' : ''}${
+          show ? '' : ' back-of-card'
+        }`}
         style={this.makeCardStyle()}
         onClick={() => isOwned && this.toggleSelected()}
       >
-        {show ? (
+        {show && (
           <>
             {this.getSuitRank()}
             {this.getSuitIcon()}
             {this.getCardName()}
           </>
-        ) : (
-          <p>Back of Card</p>
         )}
       </div>
     );
