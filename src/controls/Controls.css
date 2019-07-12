@@ -1,16 +1,6 @@
 div.controls {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-  min-height: 45px;
-}
-
-div.controls div.buttonHolder {
-  display: flex;
-  flex-direction: row;
-}
-
-div.buttonHolder button {
-  flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

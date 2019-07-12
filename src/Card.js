@@ -113,7 +113,7 @@ class Card extends Component {
 
   render() {
     const {
-      data: { asterisk, name, rank, suit },
+      data: { name },
       show,
       isOwned,
       selectedCards

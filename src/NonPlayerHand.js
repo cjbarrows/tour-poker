@@ -48,7 +48,7 @@ class NonPlayerHand extends Component {
         };
       case 'top':
         return {
-          transform: 'translateX(-100%) translateY(-50%)',
+          transform: 'translateX(-100%)',
           top: '50%',
           textAlign: 'right'
         };

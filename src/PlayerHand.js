@@ -10,16 +10,12 @@ import './PlayerHand.css';
 
 class PlayerHand extends Component {
   render() {
-    const { cardSize, player, loggedIn } = this.props;
+    const { cardSize, player } = this.props;
 
-    const { hand, money } = player || [];
+    const { hand } = player || [];
 
     return (
       <div className="player-hand-container">
-        <h1>
-          {loggedIn}
-          <p className="money">${money}</p>
-        </h1>
         <div className="player-hand">
           {hand &&
             hand.map(card => (
