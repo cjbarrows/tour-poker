@@ -9,12 +9,17 @@ import playerNames from './playerNames';
 
 class Hands extends Component {
   render() {
-    const { loggedIn } = this.props;
+    const { cardSize, loggedIn } = this.props;
 
     return (
       <div className="hands">
         {playerNames.map(player => (
-          <PlayerHand key={player} name={player} loggedIn={loggedIn} />
+          <PlayerHand
+            cardSize={cardSize}
+            key={player}
+            name={player}
+            loggedIn={loggedIn}
+          />
         ))}
       </div>
     );

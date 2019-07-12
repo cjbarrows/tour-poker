@@ -1,38 +1,37 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import Card from "./Card";
+import Card from './Card';
 
-import * as cardActions from "./cardActions";
+import * as cardActions from './cardActions';
 
-import "./PlayerHand.css";
+import './PlayerHand.css';
 
 class PlayerHand extends Component {
   render() {
-    const { players, loggedIn, name, turn } = this.props;
+    const { cardSize, player, loggedIn, turn } = this.props;
 
-    const { hand, money } = players[name] || [];
-
-    const className = `player-hand ${turn === name ? "my-turn" : ""}`;
-
-    const isOwnHand = loggedIn === name;
+    const { hand, money } = player || [];
 
     return (
-      <div className={className}>
+      <div className="player-hand-container">
         <h1>
-          {name}
+          {loggedIn}
           <p className="money">${money}</p>
         </h1>
-        {hand &&
-          hand.map(card => (
-            <Card
-              key={card.name}
-              show={isOwnHand || card.faceDown === false}
-              isOwned={isOwnHand}
-              data={card}
-            />
-          ))}
+        <div className="player-hand">
+          {hand &&
+            hand.map(card => (
+              <Card
+                cardSize={cardSize}
+                key={card.name}
+                show={true}
+                isOwned={true}
+                data={card}
+              />
+            ))}
+        </div>
       </div>
     );
   }

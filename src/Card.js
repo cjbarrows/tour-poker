@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import * as playerActions from './playerActions';
 
 import './Card.css';
+import YellowJersey from './images/yellow_jersey.png';
+import GreenJersey from './images/green_jersey.png';
+import KOMJersey from './images/kom_jersey.png';
+import FrenchFlag from './images/french_flag.png';
 
 const ranks = [
   'Ace',
@@ -41,6 +45,81 @@ class Card extends Component {
     togglePlayerSelectedCard(name);
   }
 
+  makeCardStyle() {
+    const { cardSize } = this.props;
+    return {
+      borderRadius: cardSize.width * 0.2,
+      width: cardSize.width,
+      height: cardSize.height
+    };
+  }
+
+  getSuitRank() {
+    const {
+      data: { rank },
+      cardSize
+    } = this.props;
+
+    const fontSize = cardSize.width * 0.4;
+
+    return (
+      <span style={{ fontSize }} className="rank">
+        {rank}
+      </span>
+    );
+  }
+
+  getSuitIcon() {
+    const {
+      data: { suit },
+      cardSize
+    } = this.props;
+
+    const iconSize = cardSize.width * 0.5;
+
+    let imageSource;
+    switch (suit) {
+      case 'kom':
+        imageSource = KOMJersey;
+        break;
+      case 'points':
+        imageSource = GreenJersey;
+        break;
+      case 'stage':
+        imageSource = FrenchFlag;
+        break;
+      case 'gc':
+        imageSource = YellowJersey;
+        break;
+      default:
+        break;
+    }
+
+    return (
+      <img
+        className="suit-icon"
+        width={iconSize}
+        alt="suit"
+        src={imageSource}
+      />
+    );
+  }
+
+  getCardName() {
+    const {
+      data: { name },
+      cardSize
+    } = this.props;
+
+    const fontSize = cardSize.width * 0.15;
+
+    return (
+      <p style={{ fontSize }} className="rider-name">
+        {name}
+      </p>
+    );
+  }
+
   render() {
     const {
       data: { asterisk, name, rank, suit },
@@ -54,12 +133,14 @@ class Card extends Component {
     return (
       <div
         className={`card${selected ? ' selected' : ''}`}
+        style={this.makeCardStyle()}
         onClick={() => isOwned && this.toggleSelected()}
       >
         {show ? (
           <>
-            <p>{name}</p>
-            <p>{getDescription(rank, suit, asterisk)}</p>
+            {this.getSuitRank()}
+            {this.getSuitIcon()}
+            {this.getCardName()}
           </>
         ) : (
           <p>Back of Card</p>
