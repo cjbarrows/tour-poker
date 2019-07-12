@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as playerActions from './playerActions';
 
 import './Card.css';
+import './animate.css';
 import YellowJersey from './images/yellow_jersey.png';
 import GreenJersey from './images/green_jersey.png';
 import KOMJersey from './images/kom_jersey.png';
@@ -122,7 +123,7 @@ class Card extends Component {
 
     return (
       <div
-        className={`card${selected ? ' selected' : ''}${
+        className={`animated rollIn card${selected ? ' selected' : ''}${
           show ? '' : ' back-of-card'
         }`}
         style={this.makeCardStyle()}

@@ -33,15 +33,11 @@ class BidControls extends Component {
   }
 
   render() {
-    const { bid, loggedIn, playerReducer, pot } = this.props;
-
-    // TODO show the pot graphically
+    const { bid, loggedIn, playerReducer } = this.props;
 
     const { stake } = playerReducer[loggedIn];
 
     const needsToPay = bid - stake;
-    const stayInMessage =
-      needsToPay > 0 ? `($${needsToPay} to stay in)` : `Current Bid: $${bid}`;
 
     return (
       <div className="controls bid">

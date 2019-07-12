@@ -1,6 +1,6 @@
 div.nonplayer-hand-container {
   position: absolute;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 
 div.nonplayer-hand-container .player-hand {
@@ -13,9 +13,12 @@ div.nonplayer-hand-container .player-hand .card-holder {
   width: 5%;
 }
 
-div.nonplayer-hand-container .player-hand .card-holder .card {
-}
-
 div.nonplayer-hand-container h1 {
   position: absolute;
+  margin: 0;
+  color: gold;
+}
+
+div.nonplayer-hand-container h1 p {
+  margin: 0;
 }

@@ -37,21 +37,47 @@ class NonPlayerHand extends Component {
     }
   }
 
-  render() {
-    const { cardSize, player, loggedIn } = this.props;
+  getLabelPositionStyle() {
+    const { position } = this.props;
 
-    const { hand, money } = player || [];
+    switch (position) {
+      case 'left':
+        return {
+          left: '5%',
+          transform: 'translateY(-100%)'
+        };
+      case 'top':
+        return {
+          transform: 'translateX(-100%) translateY(-50%)',
+          top: '50%',
+          textAlign: 'right'
+        };
+      case 'right':
+        return {
+          transform: 'translateY(-100%) translateX(-100%)',
+          left: '35%',
+          textAlign: 'right'
+        };
+      default:
+        return {};
+    }
+  }
+
+  render() {
+    const { cardSize, player } = this.props;
+
+    const { hand, money, name } = player || [];
 
     return (
       <div
         className="nonplayer-hand-container"
         style={this.getContainerPositionStyle()}
       >
-        <h1>
-          {loggedIn}
-          <p className="money">${money}</p>
-        </h1>
         <div className="player-hand" style={this.getHandPositionStyle()}>
+          <h1 style={this.getLabelPositionStyle()}>
+            {name}
+            <p className="money">${money}</p>
+          </h1>
           {hand &&
             hand.map(card => (
               <div className="card-holder">

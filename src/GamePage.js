@@ -6,6 +6,7 @@ import PlayerHand from './PlayerHand';
 import NonPlayerHand from './NonPlayerHand';
 import Controls from './controls/Controls';
 import WinnerAlert from './WinnerAlert';
+import PlayerInfo from './PlayerInfo';
 import playerNames from './playerNames';
 
 import './GamePage.css';
@@ -15,7 +16,10 @@ const getPlayerNotThis = (players, loggedIn, index) => {
   for (let i = 0; i < playerNames.length; i++) {
     if (playerNames[i] !== loggedIn) {
       if (n === index) {
-        return players[playerNames[i]];
+        return {
+          ...players[playerNames[i]],
+          name: playerNames[i]
+        };
       }
       n++;
     }
@@ -51,10 +55,9 @@ const GamePage = withContentRect('bounds')(props => {
   const topPlayer = getPlayerNotThis(players, loggedIn, 1);
   const rightPlayer = getPlayerNotThis(players, loggedIn, 2);
 
-  console.log(leftPlayer);
-
   return (
     <div ref={measureRef} className="game-page">
+      <PlayerInfo player={thisPlayer} />
       <PlayerHand cardSize={cardSize} player={thisPlayer} />
       <NonPlayerHand position="left" cardSize={cardSize} player={leftPlayer} />
       <NonPlayerHand position="top" cardSize={cardSize} player={topPlayer} />
