@@ -2,10 +2,6 @@ div.player-hand {
   padding-left: 75px;
   display: flex;
   flex-direction: row;
-  background-color: lightblue;
-}
-
-div.player-hand:not(:first-child) {
 }
 
 div.player-hand.my-turn {

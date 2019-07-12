@@ -5,10 +5,6 @@ div#root,
   margin: 0
 }
 
-html {
-  background-color: lightgreen;
-}
-
 .App {
   display: flex;
   flex-direction: column;

@@ -5,6 +5,8 @@ import Hands from './Hands';
 import Controls from './controls/Controls';
 import WinnerAlert from './WinnerAlert';
 
+import './GamePage.css';
+
 class GamePage extends Component {
   render() {
     const { turn, gameWinner } = this.props;
@@ -14,13 +16,13 @@ class GamePage extends Component {
     } = JSON.parse(localStorage.getItem('user'));
 
     return (
-      <>
+      <div className="game-page">
         <Hands loggedIn={loggedIn} selectorFunction={this.setSelectedCards} />
         {turn === loggedIn && <Controls loggedIn={loggedIn} />}
         {gameWinner && Object.entries(gameWinner).length > 0 ? (
           <WinnerAlert winner={gameWinner.name} hand={gameWinner.hand} />
         ) : null}
-      </>
+      </div>
     );
   }
 

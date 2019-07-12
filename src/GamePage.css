@@ -1,0 +1,9 @@
+div.game-page {
+  background-image: url("images/background.png");
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
