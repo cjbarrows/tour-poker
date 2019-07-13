@@ -42,9 +42,11 @@ class BidControls extends Component {
     return (
       <div className="controls bid">
         <div className="buttonHolder">
-          {this.buildBidButton(1)}
-          {this.buildBidButton(5)}
-          {this.buildBidButton(10)}
+          <div className="poker-chip-holder">
+            {this.buildBidButton(1)}
+            {this.buildBidButton(5)}
+            {this.buildBidButton(10)}
+          </div>
           <button
             className="end-turn-button"
             disabled={needsToPay > 0}

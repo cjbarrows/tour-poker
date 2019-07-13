@@ -10,12 +10,12 @@ import './NonPlayerHand.css';
 
 class NonPlayerHand extends Component {
   getContainerPositionStyle() {
-    const { cardSize, position } = this.props;
+    const { position } = this.props;
     switch (position) {
       case 'left':
         return { left: 0, bottom: 0 };
       case 'top':
-        return { left: '50%', top: cardSize.height };
+        return { left: '50%', top: 45 };
       case 'right':
         return { right: 0, bottom: 0 };
       default:
@@ -49,7 +49,7 @@ class NonPlayerHand extends Component {
       case 'top':
         return {
           transform: 'translateX(-100%)',
-          top: '50%',
+          top: '0',
           textAlign: 'right'
         };
       case 'right':
@@ -68,6 +68,8 @@ class NonPlayerHand extends Component {
 
     const { hand, money, name } = player || [];
 
+    const smallerCardSize = cardSize ? { width: cardSize.width * .75, height: cardSize.height * .75 } : {};
+
     return (
       <div
         className="nonplayer-hand-container"
@@ -82,7 +84,7 @@ class NonPlayerHand extends Component {
             hand.map(card => (
               <div className="card-holder">
                 <Card
-                  cardSize={cardSize}
+                  cardSize={smallerCardSize}
                   key={card.name}
                   show={false}
                   isOwned={false}

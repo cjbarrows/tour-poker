@@ -34,3 +34,8 @@ button.fold-button {
   flex-direction: column;
   align-items: center;
 }
+
+.controls.bid .poker-chip-holder {
+  display: flex;
+  flex-direction: row;
+}
