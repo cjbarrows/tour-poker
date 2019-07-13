@@ -7,7 +7,7 @@ class PlayerInfo extends Component {
   render() {
     const { player, gameReducer } = this.props;
 
-    const { turn, pot, bid } = gameReducer;
+    const { turn, pot, bid, phase } = gameReducer;
 
     const { money, stake } = player || [];
 
@@ -26,6 +26,7 @@ class PlayerInfo extends Component {
         </div>
         <div className="info right-side">
           <p>{turn}'s turn</p>
+          <p>Phase: {phase}</p>
           <p>Pot: ${pot}</p>
         </div>
       </div>
