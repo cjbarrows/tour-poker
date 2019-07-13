@@ -86,7 +86,7 @@ class NonPlayerHand extends Component {
                 <Card
                   cardSize={smallerCardSize}
                   key={card.name}
-                  show={false}
+                  show={!card.faceDown}
                   isOwned={false}
                   data={card}
                 />

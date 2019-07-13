@@ -28,6 +28,7 @@ class Controls extends Component {
           </div>
         );
       case 'deal-down':
+      case 'deal-up':
         return <DealControls />;
       case 'bid':
         return <BidControls loggedIn={loggedIn} />;
