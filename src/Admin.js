@@ -163,9 +163,13 @@ class Admin extends Component {
               onChange={e => this.onInput(e, 'gamePhases')}
             />
           </div>
-          <button onClick={() => this.onClickSaveGameSettings()}>
-            Save Game Settings
+          <div className="button-group">
+            <button onClick={() => this.setGameType(5)}>5-Card Draw</button>
+            <button onClick={() => this.setGameType(7)}>5-Card Stud</button>
+            <button onClick={() => this.onClickSaveGameSettings()}>
+              Save Game Settings
           </button>
+          </div>
           <div className="boxed">
             <label>Game Control </label>
             <input
@@ -228,6 +232,14 @@ class Admin extends Component {
     const { deck_year, deck_stage, ...gameSettings } = this.state;
 
     saveGameSettings({ ...gameReducer, ...gameSettings });
+  }
+
+  setGameType(type) {
+    if (type === 5) {
+      this.setState({ gamePhases: 'bid, shuffle, deal-down, deal-down, deal-down, deal-down, deal-down, bid, draw, bid, showdown' });
+    } else if (type === 7) {
+      this.setState({ gamePhases: 'bid, shuffle, deal-down, deal-down, deal-up, bid, deal-up, bid, deal-up, bid, deal-up, bid, deal-down, bid, showdown' });
+    }
   }
 }
 

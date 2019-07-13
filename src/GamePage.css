@@ -8,3 +8,17 @@ div.game-page {
   bottom: 0;
   overflow: hidden;
 }
+
+div.game-page div.help {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom:0;
+  z-index:10;
+  background: url('images/poker-cheat-sheet.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: rgba(255, 255, 255, .5);
+}

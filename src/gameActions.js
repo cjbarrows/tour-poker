@@ -16,4 +16,10 @@ const doPhaseAction = options => dispatch => {
   dispatch(sendMessage('doPhaseAction', options));
 };
 
-export { bid, doPhaseAction, endTurn, fold };
+const showHelp = (show = true) => dispatch => {
+  dispatch({
+    type: 'show-help',
+    payload: show
+  })
+}
+export { bid, doPhaseAction, endTurn, fold, showHelp };

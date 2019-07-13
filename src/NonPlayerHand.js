@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Card from './Card';
 
 import * as cardActions from './cardActions';
+import * as gameActions from './gameActions';
 
 import './NonPlayerHand.css';
 
@@ -64,7 +65,7 @@ class NonPlayerHand extends Component {
   }
 
   render() {
-    const { cardSize, player } = this.props;
+    const { cardSize, player, showHelp } = this.props;
 
     const { hand, money, name } = player || [];
 
@@ -76,10 +77,15 @@ class NonPlayerHand extends Component {
         style={this.getContainerPositionStyle()}
       >
         <div className="player-hand" style={this.getHandPositionStyle()}>
-          <h1 style={this.getLabelPositionStyle()}>
-            {name}
-            <p className="money">${money}</p>
-          </h1>
+          <div className="label-area" onClick={() => {
+            console.log('ok');
+            if (showHelp) { showHelp(); }
+          }}>
+            <h1 style={this.getLabelPositionStyle()}>
+              {name}
+              <p className="money">${money}</p>
+            </h1>
+          </div>
           {hand &&
             hand.map(card => (
               <div className="card-holder">
@@ -99,7 +105,8 @@ class NonPlayerHand extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  cardActions: bindActionCreators(cardActions, dispatch)
+  cardActions: bindActionCreators(cardActions, dispatch),
+  showHelp: bindActionCreators(gameActions.showHelp, dispatch)
 });
 
 const mapStateToProps = state => ({

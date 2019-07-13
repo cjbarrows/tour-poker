@@ -19,7 +19,11 @@ function gameReducer(state = INITIAL_STATE, action) {
         ...state,
         ...rest
       };
-
+    case 'show-help':
+      return {
+        ...state,
+        showHelp: action.payload,
+      };
     default:
       return {
         ...state
