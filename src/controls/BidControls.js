@@ -47,7 +47,7 @@ class BidControls extends Component {
           {this.buildBidButton(10)}
           <button
             className="end-turn-button"
-            disabled={needsToPay <= 0}
+            disabled={needsToPay > 0}
             onClick={() => this.props.gameActions.endTurn()}
           >
             End Turn
