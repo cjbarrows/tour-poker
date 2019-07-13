@@ -10,12 +10,12 @@ import './NonPlayerHand.css';
 
 class NonPlayerHand extends Component {
   getContainerPositionStyle() {
-    const { position } = this.props;
+    const { cardSize, position } = this.props;
     switch (position) {
       case 'left':
         return { left: 0, bottom: 0 };
       case 'top':
-        return { left: '50%', top: 0 };
+        return { left: '50%', top: cardSize.height };
       case 'right':
         return { right: 0, bottom: 0 };
       default:

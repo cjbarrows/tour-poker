@@ -17,11 +17,20 @@ div.bid-button img {
 button.end-turn-button {
   background-color: darkgreen;
   color: white;
-  margin: 0 25px;
+  margin: 25px;
+  width: 65%;
+  min-height: 35px;
 }
 
 button.fold-button {
   background-color: red;
   color: white;
-  padding: 0 25px;
+  width: 65%;
+  min-height: 35px;
+}
+
+.controls.bid .buttonHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

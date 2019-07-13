@@ -52,15 +52,15 @@ class BidControls extends Component {
           >
             End Turn
           </button>
-        </div>
-        <button
-          className="fold-button"
-          onClick={() => {
-            this.props.gameActions.fold(loggedIn);
-          }}
-        >
-          Fold
+          <button
+            className="fold-button"
+            onClick={() => {
+              this.props.gameActions.fold(loggedIn);
+            }}
+          >
+            Fold
         </button>
+        </div>
       </div>
     );
   }
