@@ -8,6 +8,12 @@
 
 
 TODO:
+- show folding
+- show proper "stake"?
+- check face-up cards
+- spread other player's hands when tapped (for face-up cards)
+- checking switching dealers
+
 - test folding
 - poker hand rankings overlay/cheatsheet
 - in "deal" phase, show players cards so they can view/click on them
@@ -46,3 +52,4 @@ DONE:
 - discard/redraw cards
 - finish bidding
 - calculate winner
+- show bidding

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Draggable } from 'react-drag-and-drop';
 
 import * as cardActions from '../cardActions';
 import * as gameActions from '../gameActions';
@@ -17,18 +17,17 @@ class BidControls extends Component {
 
     const images = { 1: Chip1, 5: Chip5, 10: Chip10 };
 
+    /* this.props.gameActions.doPhaseAction({(playerName, amount)}); */
+
     return (
-      <div
-        className={`bid-button bid-${amount}`}
-        onClick={() => {
-          this.props.gameActions.doPhaseAction({
-            playerName: loggedIn,
-            amount: amount
-          });
-        }}
+      <Draggable
+        type="bid"
+        data={JSON.stringify({ playerName: loggedIn, amount })}
       >
-        <img alt="" src={images[amount]} />
-      </div>
+        <div className={`bid-button bid-${amount}`}>
+          <img alt={`$${amount}`} src={images[amount]} />
+        </div>
+      </Draggable>
     );
   }
 
@@ -61,7 +60,7 @@ class BidControls extends Component {
             }}
           >
             Fold
-        </button>
+          </button>
         </div>
       </div>
     );

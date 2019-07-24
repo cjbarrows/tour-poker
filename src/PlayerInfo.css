@@ -21,3 +21,11 @@ div.player-info .info.right-side {
 div.player-info .info span {
   padding: 0 10px;
 }
+
+div.player-info .pot img {
+  width: 100px;
+}
+
+div.player-info .over .pot {
+  filter: brightness(1.75);
+}

@@ -15,8 +15,10 @@ import './GamePage.css';
 
 function getHelpScreen(showHelpScreen) {
   return (
-    <div className="help" onClick={() => showHelpScreen(false)}>Help!</div>
-  )
+    <div className="help" onClick={() => showHelpScreen(false)}>
+      Help!
+    </div>
+  );
 }
 
 const getPlayerNotThis = (players, loggedIn, index) => {
@@ -47,7 +49,15 @@ const calculateCardSize = (width, height) => {
 };
 
 const GamePage = withContentRect('bounds')(props => {
-  const { turn, gameWinner, measureRef, contentRect, players, showHelp, showHelpScreen } = props;
+  const {
+    turn,
+    gameWinner,
+    measureRef,
+    contentRect,
+    players,
+    showHelp,
+    showHelpScreen
+  } = props;
 
   const {
     user: { username: loggedIn }
@@ -94,4 +104,7 @@ const mapStateToProps = state => ({
   showHelp: state.gameReducer.showHelp
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GamePage);

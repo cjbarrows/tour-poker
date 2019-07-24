@@ -14,18 +14,16 @@ const INITIAL_STATE = {
 };
 
 const getPlayerInfo = (state, name) => {
-  console.log(state[name]);
   return {
     hand: [...(state[name].hand ? state[name].hand : [])],
     money: state[name].money,
     stake: state[name].stake
-  }
-}
+  };
+};
 
 function playerReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REFRESH_PLAYER_RECEIVED:
-      /*
+    case REFRESH_PLAYER_RECEIVED: /*
       return {
         ...state,
         [action.playerName]: {
@@ -36,21 +34,21 @@ function playerReducer(state = INITIAL_STATE, action) {
         }
       };
       */
-      {
-        const newState = {
-          ...state,
-          charlie: getPlayerInfo(state, 'charlie'),
-          ethan: getPlayerInfo(state, 'ethan'),
-          jorie: getPlayerInfo(state, 'jorie'),
-          katie: getPlayerInfo(state, 'katie')
-        };
-        newState[action.playerName] = {
-          hand: [...action.hand],
-          money: action.money,
-          stake: action.stake
-        };
-        return newState;
-      }
+    {
+      const newState = {
+        ...state,
+        charlie: getPlayerInfo(state, 'charlie'),
+        ethan: getPlayerInfo(state, 'ethan'),
+        jorie: getPlayerInfo(state, 'jorie'),
+        katie: getPlayerInfo(state, 'katie')
+      };
+      newState[action.playerName] = {
+        hand: [...action.hand],
+        money: action.money,
+        stake: action.stake
+      };
+      return newState;
+    }
     case SET_SELECTED_CARDS:
       return {
         ...state,
@@ -64,8 +62,8 @@ function playerReducer(state = INITIAL_STATE, action) {
           ...(state.selectedCards.find(card => card === action.card)
             ? state.selectedCards.filter(card => card !== action.card)
             : state.selectedCards.length < 3
-              ? [...state.selectedCards, action.card]
-              : [...state.selectedCards])
+            ? [...state.selectedCards, action.card]
+            : [...state.selectedCards])
         ]
       };
 

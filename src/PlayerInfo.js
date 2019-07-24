@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Pot from './Pot';
+
 import './PlayerInfo.css';
 
 class PlayerInfo extends Component {
@@ -28,6 +30,7 @@ class PlayerInfo extends Component {
           <p>{turn}'s turn</p>
           <p>Phase: {phase}</p>
           <p>Pot: ${pot}</p>
+          <Pot />
         </div>
       </div>
     );
