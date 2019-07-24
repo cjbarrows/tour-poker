@@ -22,10 +22,34 @@ div.player-info .info span {
   padding: 0 10px;
 }
 
+div.player-info .pot {
+  width: 8vw;
+  position: relative;
+}
+
 div.player-info .pot img {
-  width: 100px;
+  width: 100%;
+  pointer-events: none;
+}
+
+div.player-info .pot p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-40%);
+  text-align: center;
+  pointer-events: none;
 }
 
 div.player-info .over .pot {
   filter: brightness(1.75);
+}
+
+div.player-info .pot .chip {
+  position: absolute;
+  background: url('images/chip_1.png');
+  background-size: contain;
+  width: 3vw;
+  height: 3vw;
+  pointer-events: none;
 }

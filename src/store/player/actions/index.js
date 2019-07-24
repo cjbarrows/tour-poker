@@ -9,7 +9,8 @@ export const refreshPlayerReceived = message => {
     playerName: message.playerName,
     hand: message.hand,
     money: message.money,
-    stake: message.stake
+    stake: message.stake,
+    folded: message.folded
   };
 };
 

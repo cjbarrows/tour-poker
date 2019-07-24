@@ -17,13 +17,14 @@ const getPlayerInfo = (state, name) => {
   return {
     hand: [...(state[name].hand ? state[name].hand : [])],
     money: state[name].money,
-    stake: state[name].stake
+    stake: state[name].stake,
+    folded: state[name].folded
   };
 };
 
 function playerReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REFRESH_PLAYER_RECEIVED: /*
+    case REFRESH_PLAYER_RECEIVED /*
       return {
         ...state,
         [action.playerName]: {
@@ -33,8 +34,7 @@ function playerReducer(state = INITIAL_STATE, action) {
           stake: action.stake
         }
       };
-      */
-    {
+      */: {
       const newState = {
         ...state,
         charlie: getPlayerInfo(state, 'charlie'),
@@ -45,7 +45,8 @@ function playerReducer(state = INITIAL_STATE, action) {
       newState[action.playerName] = {
         hand: [...action.hand],
         money: action.money,
-        stake: action.stake
+        stake: action.stake,
+        folded: action.folded
       };
       return newState;
     }

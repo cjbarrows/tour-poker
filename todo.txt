@@ -8,14 +8,14 @@
 
 
 TODO:
-- show folding
+- fix the current bid/stake/mutability bug
+- show bidding (animated)
 - show proper "stake"?
 - check face-up cards
 - spread other player's hands when tapped (for face-up cards)
 - checking switching dealers
 
 - test folding
-- poker hand rankings overlay/cheatsheet
 - in "deal" phase, show players cards so they can view/click on them
 - allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
 - seems like checking localStorage.getItem() in PrivateRoute isn't secure at all
@@ -53,3 +53,5 @@ DONE:
 - finish bidding
 - calculate winner
 - show bidding
+- show folded
+- poker hand rankings overlay/cheatsheet

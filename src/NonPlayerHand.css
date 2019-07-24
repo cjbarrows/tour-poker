@@ -22,3 +22,7 @@ div.nonplayer-hand-container h1 {
 div.nonplayer-hand-container h1 p {
   margin: 0;
 }
+
+.player-hand.folded .card {
+  filter: brightness(0.33);
+}

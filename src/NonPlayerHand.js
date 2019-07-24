@@ -67,20 +67,30 @@ class NonPlayerHand extends Component {
   render() {
     const { cardSize, player, showHelp } = this.props;
 
-    const { hand, money, name } = player || [];
+    const { folded, hand, money, name } = player || [];
 
-    const smallerCardSize = cardSize ? { width: cardSize.width * .75, height: cardSize.height * .75 } : {};
+    const smallerCardSize = cardSize
+      ? { width: cardSize.width * 0.75, height: cardSize.height * 0.75 }
+      : {};
 
     return (
       <div
         className="nonplayer-hand-container"
         style={this.getContainerPositionStyle()}
       >
-        <div className="player-hand" style={this.getHandPositionStyle()}>
-          <div className="label-area" onClick={() => {
-            console.log('ok');
-            if (showHelp) { showHelp(); }
-          }}>
+        <div
+          className={`player-hand ${folded ? 'folded' : ''}`}
+          style={this.getHandPositionStyle()}
+        >
+          <div
+            className="label-area"
+            onClick={() => {
+              console.log('ok');
+              if (showHelp) {
+                showHelp();
+              }
+            }}
+          >
             <h1 style={this.getLabelPositionStyle()}>
               {name}
               <p className="money">${money}</p>

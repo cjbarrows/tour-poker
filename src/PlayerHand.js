@@ -12,11 +12,11 @@ class PlayerHand extends Component {
   render() {
     const { cardSize, player } = this.props;
 
-    const { hand } = player || [];
+    const { hand, folded } = player || [];
 
     return (
       <div className="player-hand-container">
-        <div className="player-hand">
+        <div className={`player-hand ${folded ? 'folded' : ''}`}>
           {hand &&
             hand.map(card => (
               <Card
