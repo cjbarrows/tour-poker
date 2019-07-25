@@ -2,25 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Droppable } from 'react-drag-and-drop';
-import posed from 'react-pose';
 
 import * as gameActions from './gameActions';
 
 import Chip1 from './images/chip_1.png';
 // import Chip5 from '../images/chip_5.png';
 // import Chip10 from '../images/chip_10.png';
-
-const Chip = posed.div({
-  visible: {
-    y: 0,
-    x: props => 100,
-    transition: {
-      x: { type: 'tween' },
-      y: props => ({ type: 'spring' }) // Resolved on `visible` enter
-    }
-  },
-  hidden: { opacity: 1 }
-});
 
 class Pot extends Component {
   constructor(props) {
@@ -55,7 +42,7 @@ class Pot extends Component {
       >
         <div className="pot">
           <div className="chips">
-            <Chip className="chip" pose={newBid === 1 ? 'visible' : 'hidden'} />
+            <div className="chip" />
           </div>
           <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
           <p>${pot}</p>
