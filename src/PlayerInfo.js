@@ -7,7 +7,7 @@ import './PlayerInfo.css';
 
 class PlayerInfo extends Component {
   render() {
-    const { player, gameReducer } = this.props;
+    const { player, gameReducer, getPlayerArea } = this.props;
 
     const { turn, bid, phase } = gameReducer;
 
@@ -29,7 +29,7 @@ class PlayerInfo extends Component {
         <div className="info right-side">
           <p>{turn}'s turn</p>
           <p>Phase: {phase}</p>
-          <Pot />
+          <Pot getPlayerArea={getPlayerArea} />
         </div>
       </div>
     );

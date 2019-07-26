@@ -65,7 +65,7 @@ class NonPlayerHand extends Component {
   }
 
   render() {
-    const { cardSize, player, showHelp } = this.props;
+    const { cardSize, player, showHelp, position } = this.props;
 
     const { folded, hand, money, name } = player || [];
 
@@ -75,7 +75,7 @@ class NonPlayerHand extends Component {
 
     return (
       <div
-        className="nonplayer-hand-container"
+        className={`nonplayer-hand-container ${position}-hand`}
         style={this.getContainerPositionStyle()}
       >
         <div
@@ -98,10 +98,9 @@ class NonPlayerHand extends Component {
           </div>
           {hand &&
             hand.map(card => (
-              <div className="card-holder">
+              <div className="card-holder" key={card.name}>
                 <Card
                   cardSize={smallerCardSize}
-                  key={card.name}
                   show={!card.faceDown}
                   isOwned={false}
                   data={card}

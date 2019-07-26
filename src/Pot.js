@@ -16,6 +16,7 @@ class Pot extends Component {
       lastPot: undefined,
       newBid: undefined
     };
+    this.chipRef = React.createRef();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -28,9 +29,22 @@ class Pot extends Component {
     return { lastPot: props.pot };
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.pot !== this.props.pot) {
+      const { getPlayerArea, turn } = this.props;
+      const pa = getPlayerArea(turn);
+      console.log(pa);
+    }
+  }
+
   render() {
     const { pot } = this.props;
     const { newBid } = this.state;
+
+    if (this.chipRef.current) {
+      console.log(this.chipRef.current.style);
+      this.chipRef.current.style.left = '-100px';
+    }
 
     return (
       <Droppable
@@ -42,7 +56,7 @@ class Pot extends Component {
       >
         <div className="pot">
           <div className="chips">
-            <div className="chip" />
+            <div className="chip" ref={this.chipRef} />
           </div>
           <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
           <p>${pot}</p>
@@ -57,7 +71,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  pot: state.gameReducer.pot
+  pot: state.gameReducer.pot,
+  turn: state.gameReducer.turn
 });
 
 export default connect(

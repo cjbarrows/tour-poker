@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withContentRect } from 'react-measure';
+import Measure from 'react-measure';
 import { bindActionCreators } from 'redux';
 
 import PlayerHand from './PlayerHand';
@@ -48,50 +48,73 @@ const calculateCardSize = (width, height) => {
     : { width: width2, height: height2 };
 };
 
-const GamePage = withContentRect('bounds')(props => {
-  const {
-    turn,
-    gameWinner,
-    measureRef,
-    contentRect,
-    players,
-    showHelp,
-    showHelpScreen
-  } = props;
+class GamePage extends Component {
+  constructor(props) {
+    super(props);
+    this.innerRef = null;
+  }
 
-  const {
-    user: { username: loggedIn }
-  } = JSON.parse(localStorage.getItem('user'));
+  getPlayerArea = playerName => {
+    const el = this.innerRef.querySelector('.top-hand');
+    if (el) {
+      return el.getBoundingClientRect();
+    }
+  };
 
-  const cardSize = calculateCardSize(
-    contentRect.bounds.width,
-    contentRect.bounds.height
-  );
+  render() {
+    const { turn, gameWinner, players, showHelp, showHelpScreen } = this.props;
 
-  const thisPlayer = players[loggedIn];
-  const leftPlayer = getPlayerNotThis(players, loggedIn, 0);
-  const topPlayer = getPlayerNotThis(players, loggedIn, 1);
-  const rightPlayer = getPlayerNotThis(players, loggedIn, 2);
+    const {
+      user: { username: loggedIn }
+    } = JSON.parse(localStorage.getItem('user'));
 
-  return (
-    <div ref={measureRef} className="game-page">
-      {showHelp && getHelpScreen(showHelpScreen)}
-      <PlayerInfo player={thisPlayer} />
-      <PlayerHand cardSize={cardSize} player={thisPlayer} />
-      <NonPlayerHand position="left" cardSize={cardSize} player={leftPlayer} />
-      <NonPlayerHand position="top" cardSize={cardSize} player={topPlayer} />
-      <NonPlayerHand
-        position="right"
-        cardSize={cardSize}
-        player={rightPlayer}
-      />
-      {turn === loggedIn && <Controls loggedIn={loggedIn} />}
-      {gameWinner && Object.entries(gameWinner).length > 0 ? (
-        <WinnerAlert winner={gameWinner.name} hand={gameWinner.hand} />
-      ) : null}
-    </div>
-  );
-});
+    const thisPlayer = players[loggedIn];
+    const leftPlayer = getPlayerNotThis(players, loggedIn, 0);
+    const topPlayer = getPlayerNotThis(players, loggedIn, 1);
+    const rightPlayer = getPlayerNotThis(players, loggedIn, 2);
+
+    return (
+      <Measure bounds innerRef={el => (this.innerRef = el)}>
+        {({ measureRef, contentRect }) => {
+          const cardSize = calculateCardSize(
+            contentRect.bounds.width,
+            contentRect.bounds.height
+          );
+
+          return (
+            <div ref={measureRef} className="game-page">
+              {showHelp && getHelpScreen(showHelpScreen)}
+              <PlayerInfo
+                player={thisPlayer}
+                getPlayerArea={this.getPlayerArea}
+              />
+              <PlayerHand cardSize={cardSize} player={thisPlayer} />
+              <NonPlayerHand
+                position="left"
+                cardSize={cardSize}
+                player={leftPlayer}
+              />
+              <NonPlayerHand
+                position="top"
+                cardSize={cardSize}
+                player={topPlayer}
+              />
+              <NonPlayerHand
+                position="right"
+                cardSize={cardSize}
+                player={rightPlayer}
+              />
+              {turn === loggedIn && <Controls loggedIn={loggedIn} />}
+              {gameWinner && Object.entries(gameWinner).length > 0 ? (
+                <WinnerAlert winner={gameWinner.name} hand={gameWinner.hand} />
+              ) : null}
+            </div>
+          );
+        }}
+      </Measure>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   showHelpScreen: bindActionCreators(gameActions.showHelp, dispatch)

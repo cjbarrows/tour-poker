@@ -39,9 +39,9 @@ class Card extends Component {
   makeCardStyle() {
     const { cardSize } = this.props;
     return {
-      borderRadius: cardSize.width * 0.2,
-      width: cardSize.width,
-      height: cardSize.height
+      borderRadius: cardSize.width ? cardSize.width * 0.2 : 0,
+      width: cardSize.width || 0,
+      height: cardSize.height || 0
     };
   }
 
@@ -51,7 +51,7 @@ class Card extends Component {
       cardSize
     } = this.props;
 
-    const fontSize = cardSize.width * 0.4;
+    const fontSize = cardSize.width ? cardSize.width * 0.4 : 0;
 
     return (
       <span style={{ fontSize }} className="rank">
@@ -66,7 +66,7 @@ class Card extends Component {
       cardSize
     } = this.props;
 
-    const iconSize = cardSize.width * 0.5;
+    const iconSize = cardSize.width ? cardSize.width * 0.5 : 0;
 
     let imageSource;
     switch (suit) {
@@ -102,7 +102,7 @@ class Card extends Component {
       cardSize
     } = this.props;
 
-    const fontSize = cardSize.width * 0.15;
+    const fontSize = cardSize.width ? cardSize.width * 0.15 : 0;
 
     return (
       <p style={{ fontSize }} className="rider-name">

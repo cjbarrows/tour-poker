@@ -8,9 +8,12 @@
 
 
 TODO:
+- use react-measure on the non-player-hands to get their bounds (since getting the ref doesn't seem to work)
+- show the current bid on the pot
+- store history of moves on the server for playback
 - fix the current bid/stake/mutability bug
+    - show proper "stake"?
 - show bidding (animated)
-- show proper "stake"?
 - check face-up cards
 - spread other player's hands when tapped (for face-up cards)
 - checking switching dealers
