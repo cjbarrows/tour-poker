@@ -54,11 +54,37 @@ class GamePage extends Component {
     this.innerRef = null;
   }
 
-  getPlayerArea = playerName => {
-    const el = this.innerRef.querySelector('.top-hand');
-    if (el) {
-      return el.getBoundingClientRect();
+  getAreaForPlayerName = playerName => {
+    const { players } = this.props;
+
+    const {
+      user: { username: loggedIn }
+    } = JSON.parse(localStorage.getItem('user'));
+
+    const leftPlayer = getPlayerNotThis(players, loggedIn, 0);
+    if (playerName === leftPlayer.name) {
+      return 'left';
     }
+    const topPlayer = getPlayerNotThis(players, loggedIn, 1);
+    if (playerName === topPlayer.name) {
+      return 'top';
+    }
+    const rightPlayer = getPlayerNotThis(players, loggedIn, 2);
+    if (playerName === rightPlayer.name) {
+      return 'right';
+    }
+    return undefined;
+  };
+
+  getPlayerArea = playerName => {
+    const area = this.getAreaForPlayerName(playerName);
+    if (area) {
+      const el = this.innerRef.querySelector(`.${area}-hand`);
+      if (el) {
+        return el.getBoundingClientRect();
+      }
+    }
+    return undefined;
   };
 
   render() {

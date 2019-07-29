@@ -47,9 +47,22 @@ div.player-info .over .pot {
 
 div.player-info .pot .chip {
   position: absolute;
-  background: url('images/chip_1.png');
   background-size: contain;
   width: 3vw;
   height: 3vw;
   pointer-events: none;
+  opacity: 0;
+  z-index: 1000;
+}
+
+div.player-info .pot .chip.value-1 {
+  background-image: url('images/chip_1.png');
+}
+
+div.player-info .pot .chip.value-5 {
+  background-image: url('images/chip_5.png');
+}
+
+div.player-info .pot .chip.value-10 {
+  background-image: url('images/chip_10.png');
 }
