@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "http-proxy-middleware": "^0.19.1",
+    "interactjs": "^1.5.4",
     "kute.js": "^1.6.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

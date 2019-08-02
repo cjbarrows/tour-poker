@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Draggable } from 'react-drag-and-drop';
+import interact from 'interactjs';
 
 import * as cardActions from '../cardActions';
 import * as gameActions from '../gameActions';
@@ -11,7 +11,36 @@ import Chip1 from '../images/chip_1.png';
 import Chip5 from '../images/chip_5.png';
 import Chip10 from '../images/chip_10.png';
 
+function dragMoveListener(event) {
+  var target = event.target;
+  // keep the dragged position in the data-x/data-y attributes
+  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  // translate the element
+  target.style.webkitTransform = target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
+
+  // update the posiion attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+}
+
 class BidControls extends Component {
+  componentDidMount() {
+    const draggableChip = interact('.bid-button');
+
+    draggableChip.draggable({
+      onmove: dragMoveListener,
+      onend: event => {
+        const target = event.target;
+        target.style.webkitTransform = target.style.transform = '';
+        target.setAttribute('data-x', 0);
+        target.setAttribute('data-y', 0);
+      }
+    });
+  }
+
   buildBidButton(amount) {
     const { loggedIn } = this.props;
 
@@ -20,14 +49,13 @@ class BidControls extends Component {
     /* this.props.gameActions.doPhaseAction({(playerName, amount)}); */
 
     return (
-      <Draggable
-        type="bid"
-        data={JSON.stringify({ playerName: loggedIn, amount })}
+      <div
+        className={`bid-button bid-${amount}`}
+        data-player={loggedIn}
+        data-amount={amount}
       >
-        <div className={`bid-button bid-${amount}`}>
-          <img alt={`$${amount}`} src={images[amount]} />
-        </div>
-      </Draggable>
+        <img alt={`$${amount}`} src={images[amount]} />
+      </div>
     );
   }
 

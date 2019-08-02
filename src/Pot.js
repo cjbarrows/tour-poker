@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Droppable } from 'react-drag-and-drop';
+import interact from 'interactjs';
 import { fromTo } from 'kute.js';
 
 import * as gameActions from './gameActions';
@@ -14,6 +14,22 @@ class Pot extends Component {
       5: React.createRef(),
       10: React.createRef()
     };
+  }
+
+  componentDidMount() {
+    const potTarget = interact('.pot');
+
+    potTarget.dropzone({
+      ondrop: event => {
+        const playerName = event.relatedTarget.getAttribute('data-player');
+        const amount = parseInt(
+          event.relatedTarget.getAttribute('data-amount'),
+          10
+        );
+        this.props.gameActions.doPhaseAction({ playerName, amount });
+      },
+      accept: '.bid-button'
+    });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -48,23 +64,15 @@ class Pot extends Component {
     const { pot } = this.props;
 
     return (
-      <Droppable
-        types={['bid']}
-        onDrop={data => {
-          const { playerName, amount } = JSON.parse(data['bid']);
-          this.props.gameActions.doPhaseAction({ playerName, amount });
-        }}
-      >
-        <div className="pot">
-          <div className="chips">
-            <div className="chip value-1" ref={this.chipRefs[1]} />
-            <div className="chip value-5" ref={this.chipRefs[5]} />
-            <div className="chip value-10" ref={this.chipRefs[10]} />
-          </div>
-          <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
-          <p>${pot}</p>
+      <div className="pot">
+        <div className="chips">
+          <div className="chip value-1" ref={this.chipRefs[1]} />
+          <div className="chip value-5" ref={this.chipRefs[5]} />
+          <div className="chip value-10" ref={this.chipRefs[10]} />
         </div>
-      </Droppable>
+        <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
+        <p>${pot}</p>
+      </div>
     );
   }
 }
