@@ -54,7 +54,7 @@ class BidControls extends Component {
         data-player={loggedIn}
         data-amount={amount}
       >
-        <img alt={`$${amount}`} src={images[amount]} />
+        <img alt="" src={images[amount]} />
       </div>
     );
   }

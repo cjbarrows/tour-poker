@@ -8,12 +8,14 @@
   height: 50px;
   margin: 0 10px;
   user-select: none;
+  touch-action: none;
 }
 
 div.bid-button img {
   filter: drop-shadow(5px 5px 10px black);
   width: 100%;
   user-select: none;
+  touch-action: none;
 }
 
 button.end-turn-button {
