@@ -1,6 +1,7 @@
 .controls.bid {
   position: absolute;
   bottom: 10px;
+  z-index: 10;
 }
 
 .controls.bid .bid-button {
@@ -9,7 +10,19 @@
   margin: 0 10px;
   user-select: none;
   touch-action: none;
-  background-color: pink;
+  background-size: cover;
+}
+
+.controls.bid .bid-button.bid-1 {
+  background-image: url('../images/chip_1.png');
+}
+
+.controls.bid .bid-button.bid-5 {
+  background-image: url('../images/chip_5.png');
+}
+
+.controls.bid .bid-button.bid-10 {
+  background-image: url('../images/chip_10.png');
 }
 
 div.bid-button img {

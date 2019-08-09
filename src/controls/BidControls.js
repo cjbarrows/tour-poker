@@ -7,9 +7,6 @@ import * as cardActions from '../cardActions';
 import * as gameActions from '../gameActions';
 
 import './BidControls.css';
-import Chip1 from '../images/chip_1.png';
-import Chip5 from '../images/chip_5.png';
-import Chip10 from '../images/chip_10.png';
 
 function dragMoveListener(event) {
   var target = event.target;
@@ -44,8 +41,6 @@ class BidControls extends Component {
   buildBidButton(amount) {
     const { loggedIn } = this.props;
 
-    const images = { 1: Chip1, 5: Chip5, 10: Chip10 };
-
     /* this.props.gameActions.doPhaseAction({(playerName, amount)}); */
 
     return (
@@ -53,9 +48,7 @@ class BidControls extends Component {
         className={`bid-button bid-${amount}`}
         data-player={loggedIn}
         data-amount={amount}
-      >
-        <img alt="" src={images[amount]} />
-      </div>
+      />
     );
   }
 

@@ -8,6 +8,7 @@
 
 
 TODO:
+- folding doesn't reset
 - use react-measure on the non-player-hands to get their bounds (since getting the ref doesn't seem to work)
 - show the current bid on the pot
 - store history of moves on the server for playback
@@ -58,3 +59,4 @@ DONE:
 - show bidding
 - show folded
 - poker hand rankings overlay/cheatsheet
+- interact.js drag and drop didn't want to work with images; switched to divs
