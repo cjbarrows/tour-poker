@@ -9,6 +9,7 @@
   margin: 0 10px;
   user-select: none;
   touch-action: none;
+  background-color: none;
 }
 
 div.bid-button img {
@@ -16,6 +17,7 @@ div.bid-button img {
   width: 100%;
   user-select: none;
   touch-action: none;
+  display: none;
 }
 
 button.end-turn-button {
