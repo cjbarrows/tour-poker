@@ -13,6 +13,7 @@
 div.bid-button img {
   filter: drop-shadow(5px 5px 10px black);
   width: 100%;
+  user-select: none;
 }
 
 button.end-turn-button {
