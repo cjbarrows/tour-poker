@@ -42,8 +42,8 @@ class Pot extends Component {
         if (pa) {
           const moveTween = fromTo(
             ref.current,
-            { translateX: -pa.x, translateY: pa.y },
-            { translateX: 0, translateY: 0 },
+            { translateX: -pa.x, translateY: pa.y, scale: 3 },
+            { translateX: 0, translateY: 0, scale: 1 },
             { easing: 'easingExponentialOut' }
           );
           const hideTween = fromTo(
@@ -61,7 +61,7 @@ class Pot extends Component {
   }
 
   render() {
-    const { pot } = this.props;
+    const { pot, bid } = this.props;
 
     return (
       <div className="pot">
@@ -72,6 +72,7 @@ class Pot extends Component {
         </div>
         <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
         <p>${pot}</p>
+        <span className="bid-amount">${bid}</span>
       </div>
     );
   }
@@ -82,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
+  bid: state.gameReducer.bid,
   pot: state.gameReducer.pot,
   turn: state.gameReducer.turn
 });

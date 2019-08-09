@@ -8,9 +8,8 @@
 
 
 TODO:
-- folding doesn't reset
+- make sure chips are flying in from the right quadrant
 - use react-measure on the non-player-hands to get their bounds (since getting the ref doesn't seem to work)
-- show the current bid on the pot
 - store history of moves on the server for playback
 - fix the current bid/stake/mutability bug
     - show proper "stake"?
@@ -60,3 +59,5 @@ DONE:
 - show folded
 - poker hand rankings overlay/cheatsheet
 - interact.js drag and drop didn't want to work with images; switched to divs
+- folding doesn't reset
+- show the current bid on the pot

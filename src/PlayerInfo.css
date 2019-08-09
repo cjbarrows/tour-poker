@@ -66,3 +66,11 @@ div.player-info .pot .chip.value-5 {
 div.player-info .pot .chip.value-10 {
   background-image: url('images/chip_10.png');
 }
+
+div.player-info .pot .bid-amount {
+  top: 1em;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  color: green;
+}
