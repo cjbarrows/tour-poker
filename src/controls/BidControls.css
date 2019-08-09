@@ -9,7 +9,7 @@
   margin: 0 10px;
   user-select: none;
   touch-action: none;
-  background-color: none;
+  background-color: pink;
 }
 
 div.bid-button img {
