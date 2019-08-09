@@ -14,6 +14,7 @@ class Pot extends Component {
       5: React.createRef(),
       10: React.createRef()
     };
+    this.potRef = React.createRef();
   }
 
   componentDidMount() {
@@ -40,10 +41,17 @@ class Pot extends Component {
         const { getPlayerArea, turn } = this.props;
         const pa = getPlayerArea(turn);
         if (pa) {
+          const potRect = this.potRef
+            ? this.potRef.current.getBoundingClientRect()
+            : { x: 0, y: 0, width: 0, height: 0 };
           const moveTween = fromTo(
             ref.current,
-            { translateX: -pa.x, translateY: pa.y, scale: 3 },
-            { translateX: 0, translateY: 0, scale: 1 },
+            { translateX: pa.x, translateY: pa.y, scale: 3 },
+            {
+              translateX: potRect.x + potRect.width * 0.5,
+              translateY: potRect.y + potRect.height * 0.5,
+              scale: 1
+            },
             { easing: 'easingExponentialOut' }
           );
           const hideTween = fromTo(
@@ -70,7 +78,11 @@ class Pot extends Component {
           <div className="chip value-5" ref={this.chipRefs[5]} />
           <div className="chip value-10" ref={this.chipRefs[10]} />
         </div>
-        <img alt="pot" src={process.env.PUBLIC_URL + '/pot.png'} />
+        <img
+          alt="pot"
+          ref={this.potRef}
+          src={process.env.PUBLIC_URL + '/pot.png'}
+        />
         <p>${pot}</p>
         <span className="bid-amount">${bid}</span>
       </div>

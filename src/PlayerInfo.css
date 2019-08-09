@@ -68,9 +68,15 @@ div.player-info .pot .chip.value-10 {
 }
 
 div.player-info .pot .bid-amount {
-  top: 1em;
+  top: -0.5vh;
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
   color: green;
+}
+
+div.player-info .pot .chips {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
