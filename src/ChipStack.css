@@ -1,0 +1,25 @@
+div.chip-stack {
+  position: absolute;
+  left: 0;
+  bottom: 2vw;
+}
+
+div.chip-stack .flat-chip {
+  width: 6vw;
+  height: 2vw;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-bottom: -2.5vw;
+}
+
+div.chip-stack .flat-chip.value-1 {
+  background-image: url('images/chip_1.png');
+}
+
+div.chip-stack .flat-chip.value-5 {
+  background-image: url('images/chip_5.png');
+}
+
+div.chip-stack .flat-chip.value-10 {
+  background-image: url('images/chip_10.png');
+}

@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import interact from 'interactjs';
 import { fromTo } from 'kute.js';
 
+import ChipStack from './ChipStack';
+
 import * as gameActions from './gameActions';
 
 class Pot extends Component {
@@ -78,13 +80,15 @@ class Pot extends Component {
           <div className="chip value-5" ref={this.chipRefs[5]} />
           <div className="chip value-10" ref={this.chipRefs[10]} />
         </div>
-        <img
-          alt="pot"
-          ref={this.potRef}
-          src={process.env.PUBLIC_URL + '/pot.png'}
-        />
+        <div className="pot-holder">
+          <img
+            alt="pot"
+            ref={this.potRef}
+            src={process.env.PUBLIC_URL + '/pot.png'}
+          />
+          <ChipStack amount={bid} />
+        </div>
         <p>${pot}</p>
-        <span className="bid-amount">${bid}</span>
       </div>
     );
   }
