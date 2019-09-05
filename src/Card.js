@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Img from 'react-image';
 
 import * as playerActions from './playerActions';
 
@@ -66,7 +67,7 @@ class Card extends Component {
       cardSize
     } = this.props;
 
-    const iconSize = cardSize.width ? cardSize.width * 0.5 : 0;
+    const iconSize = cardSize.width ? cardSize.width * 0.35 : 0;
 
     let imageSource;
     switch (suit) {
@@ -91,6 +92,12 @@ class Card extends Component {
         className="suit-icon"
         width={iconSize}
         alt="suit"
+        onError={e => {
+          console.log('error');
+          if (e.target.src !== '') {
+            e.target.src = '';
+          }
+        }}
         src={imageSource}
       />
     );
@@ -102,12 +109,27 @@ class Card extends Component {
       cardSize
     } = this.props;
 
-    const fontSize = cardSize.width ? cardSize.width * 0.15 : 0;
+    const fontSize = cardSize.width ? cardSize.width * 0.25 : 0;
 
     return (
       <p style={{ fontSize }} className="rider-name">
         {name}
       </p>
+    );
+  }
+
+  getCardPhoto() {
+    const {
+      data: { name }
+    } = this.props;
+
+    return (
+      <Img
+        alt={name}
+        className="rider-photo"
+        src={`${process.env.PUBLIC_URL}/riders/${name}.jpg`}
+        unloader={this.getCardName()}
+      />
     );
   }
 
@@ -131,9 +153,10 @@ class Card extends Component {
       >
         {show && (
           <>
+            {this.getCardPhoto()}
             {this.getSuitRank()}
             {this.getSuitIcon()}
-            {this.getCardName()}
+            {/* {this.getCardName()} */}
           </>
         )}
       </div>

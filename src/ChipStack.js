@@ -26,8 +26,10 @@ class ChipStack extends Component {
 
     return (
       <div className="chip-stack">
-        {chips.map(chip => {
-          return <div className={`flat-chip value-${chip}`} />;
+        {chips.map((chip, index) => {
+          return (
+            <div className={`flat-chip value-${chip}`} key={`chip-${index}`} />
+          );
         })}
       </div>
     );

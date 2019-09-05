@@ -21,24 +21,36 @@ div.card.back-of-card {
 div.card span.rank {
   position: absolute;
   top: 0;
-  left: 30%;
-  transform: translateX(-50%);
+  left: 2%;
   font-weight: bold;
   line-height: 1;
+  color: white;
+  filter: drop-shadow(0 0 1px black);
 }
 
 div.card img.suit-icon {
   position: absolute;
-  top: 30%;
-  left: 30%;
-  transform: translateX(-50%);
+  top: 5%;
+  right: 2%;
 }
 
 div.card p.rider-name {
   position: absolute;
-  bottom: 5%;
-  right: 5%;
-  text-align: right;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
   margin: 0;
   line-height: 1;
+}
+
+div.card img.rider-photo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 75%;
+  opacity: 0.6;
+  border-radius: 10px;
 }
