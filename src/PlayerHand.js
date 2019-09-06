@@ -22,6 +22,7 @@ class PlayerHand extends Component {
               <Card
                 cardSize={cardSize}
                 key={card.name}
+                faceDown={card.faceDown}
                 show={true}
                 isOwned={true}
                 data={card}

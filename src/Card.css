@@ -8,6 +8,7 @@ div.card {
   text-align: center;
   user-select: none;
   position: relative;
+  overflow: hidden;
 }
 
 div.card.selected {
@@ -43,6 +44,7 @@ div.card p.rider-name {
   transform: translateY(-50%);
   margin: 0;
   line-height: 1;
+  white-space: normal;
 }
 
 div.card img.rider-photo {

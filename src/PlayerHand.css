@@ -26,3 +26,14 @@ div.player-hand-container div.player-hand p.money {
   font-weight: normal;
   text-align: left;
 }
+
+div.player-hand-container div.player-hand div.card.face-down:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-width: 16px 16px 0 0;
+  border-style: solid;
+  border-color: darkkhaki;
+  width: 0;
+}

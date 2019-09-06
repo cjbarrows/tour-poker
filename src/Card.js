@@ -136,6 +136,7 @@ class Card extends Component {
   render() {
     const {
       data: { name },
+      faceDown,
       show,
       isOwned,
       selectedCards
@@ -147,7 +148,7 @@ class Card extends Component {
       <div
         className={`animated rollIn card${selected ? ' selected' : ''}${
           show ? '' : ' back-of-card'
-        }`}
+        }${faceDown ? ' face-down' : ''}`}
         style={this.makeCardStyle()}
         onClick={() => isOwned && this.toggleSelected()}
       >
