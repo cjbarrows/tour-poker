@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Card from './Card';
 
-import * as cardActions from './cardActions';
 import * as gameActions from './gameActions';
 
 import './NonPlayerHand.css';
 
-class NonPlayerHand extends Component {
-  getContainerPositionStyle() {
-    const { position } = this.props;
+function NonPlayerHand(props) {
+  const [isSpread, setSpread] = useState(false);
+
+  function getContainerPositionStyle() {
+    const { position } = props;
     switch (position) {
       case 'left':
         return { left: 0, bottom: 0 };
@@ -24,22 +25,24 @@ class NonPlayerHand extends Component {
     }
   }
 
-  getHandPositionStyle() {
-    const { position } = this.props;
+  function getHandPositionStyle() {
+    const { position } = props;
     switch (position) {
       case 'left':
         return { transform: 'translateY(-100%)' };
       case 'top':
         return { transform: 'translateX(-25%)' };
       case 'right':
-        return { transform: 'translateY(-100%) translateX(-40%)' };
+        return isSpread
+          ? { transform: 'translateY(-100%) translateX(-100%)' }
+          : { transform: 'translateY(-100%) translateX(-40%)' };
       default:
         return {};
     }
   }
 
-  getLabelPositionStyle() {
-    const { position } = this.props;
+  function getLabelPositionStyle() {
+    const { position } = props;
 
     switch (position) {
       case 'left':
@@ -64,64 +67,71 @@ class NonPlayerHand extends Component {
     }
   }
 
-  render() {
-    const { cardSize, player, showHelp, position } = this.props;
+  function getCardHolderStyle() {
+    const SIDE_MARGINS = 5;
+    const cardWidth = cardSize.width * 0.75 + SIDE_MARGINS * 2;
+    return isSpread ? { width: cardWidth } : {};
+  }
 
-    const { folded, hand, money, name } = player || [];
+  const { cardSize, player, showHelp, position } = props;
 
-    const smallerCardSize = cardSize
-      ? { width: cardSize.width * 0.75, height: cardSize.height * 0.75 }
-      : {};
+  const { folded, hand, money, name } = player || [];
 
-    return (
+  const smallerCardSize = cardSize
+    ? { width: cardSize.width * 0.75, height: cardSize.height * 0.75 }
+    : {};
+
+  return (
+    <div
+      className={`nonplayer-hand-container ${position}-hand`}
+      style={getContainerPositionStyle()}
+    >
       <div
-        className={`nonplayer-hand-container ${position}-hand`}
-        style={this.getContainerPositionStyle()}
+        className={`player-hand${folded ? ' folded' : ''}${
+          isSpread ? ' is-spread' : ''
+        }`}
+        onClick={() => setSpread(!isSpread)}
+        style={getHandPositionStyle()}
       >
         <div
-          className={`player-hand ${folded ? 'folded' : ''}`}
-          style={this.getHandPositionStyle()}
+          className="label-area"
+          onClick={event => {
+            event.stopPropagation();
+            if (showHelp) {
+              showHelp();
+            }
+          }}
         >
-          <div
-            className="label-area"
-            onClick={() => {
-              console.log('ok');
-              if (showHelp) {
-                showHelp();
-              }
-            }}
-          >
-            <h1 style={this.getLabelPositionStyle()}>
-              {name}
-              <p className="money">${money}</p>
-            </h1>
-          </div>
-          {hand &&
-            hand.map(card => (
-              <div className="card-holder" key={card.name}>
-                <Card
-                  cardSize={smallerCardSize}
-                  show={!card.faceDown}
-                  isOwned={false}
-                  data={card}
-                />
-              </div>
-            ))}
+          <h1 style={getLabelPositionStyle()}>
+            {name}
+            <p className="money">${money}</p>
+          </h1>
         </div>
+        {hand &&
+          hand.map(card => (
+            <div
+              className="card-holder"
+              key={card.name}
+              style={getCardHolderStyle()}
+            >
+              <Card
+                cardSize={smallerCardSize}
+                show={!card.faceDown}
+                isOwned={false}
+                data={card}
+              />
+            </div>
+          ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapDispatchToProps = dispatch => ({
-  cardActions: bindActionCreators(cardActions, dispatch),
   showHelp: bindActionCreators(gameActions.showHelp, dispatch)
 });
 
-const mapStateToProps = state => ({
-  players: state.playerReducer,
-  turn: state.gameReducer.turn
-});
+const mapStateToProps = state => ({});
 
 export default connect(
   mapStateToProps,

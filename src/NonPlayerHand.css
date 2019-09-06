@@ -6,11 +6,13 @@ div.nonplayer-hand-container {
 div.nonplayer-hand-container .player-hand {
   position: absolute;
   white-space: nowrap;
+  transition: transform 0.5s ease-out;
 }
 
 div.nonplayer-hand-container .player-hand .card-holder {
   display: inline-block;
   width: 5%;
+  transition: width 0.5s ease-out;
 }
 
 div.nonplayer-hand-container h1 {
@@ -25,4 +27,8 @@ div.nonplayer-hand-container h1 p {
 
 .player-hand.folded .card {
   filter: brightness(0.33);
+}
+
+div.nonplayer-hand-container .player-hand .card-holder .card {
+  margin: 10px 5px 10px 5px;
 }
