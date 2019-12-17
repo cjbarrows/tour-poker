@@ -6,15 +6,16 @@
 [ ] endTurn:
 	deal 1, [DDU] [phase, dealPattern]
 
+7-card stud:
+shuffle, deal-down, deal-down, deal-up, bid, deal-up, bid, deal-up, bid, deal-up, bid, deal-down, bid, showdown
 
 TODO:
+- had to restart the backend dyno for some reason
+  - maybe it lost its connection to Firebase?
 - store history of moves on the server for playback
 - fix the current bid/stake/mutability bug
     - show proper "stake"?
-- check face-up cards
-- spread other player's hands when tapped (for face-up cards)
 - checking switching dealers
-
 - test folding
 - in "deal" phase, show players cards so they can view/click on them
 - allow different dealing patterns (ie, 7-card-stud, texas hold em, etc.)
@@ -62,3 +63,16 @@ DONE:
 - use react-measure on the non-player-hands to get their bounds (since getting the ref doesn't seem to work)
 - show bidding (animated)
 - show current bid on pot with sideways chips
+- check face-up cards
+- spread other player's hands when tapped (for face-up cards)
+- find best winning hand using any combination of 5 cards
+    [x] have to come up with a better permutation maker (ie, # of permutations != number of cards - 4)
+    - write some tests first
+    - tie-breakers must use the cards from the 5 cards in the "best hand"
+    - and a 7-card hand can have more than one straight (!); check them all for flushes, etc.
+[ ] make best of 7 card hands work in the UI (not just in tests)
+  - seems to work
+  - the hand order needs to be maintained
+    - not sure why I was seeing it "off"
+      - seemed to happen on reload
+    [x] sorted by "order"

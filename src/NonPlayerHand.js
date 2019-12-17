@@ -8,6 +8,8 @@ import * as gameActions from './gameActions';
 
 import './NonPlayerHand.css';
 
+const sortByOrder = (a, b) => a.order - b.order;
+
 function NonPlayerHand(props) {
   const [isSpread, setSpread] = useState(false);
 
@@ -108,7 +110,7 @@ function NonPlayerHand(props) {
           </h1>
         </div>
         {hand &&
-          hand.map(card => (
+          hand.sort(sortByOrder).map(card => (
             <div
               className="card-holder"
               key={card.name}
@@ -133,7 +135,4 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NonPlayerHand);
+export default connect(mapStateToProps, mapDispatchToProps)(NonPlayerHand);
